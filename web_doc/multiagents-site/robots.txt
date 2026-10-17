@@ -1,0 +1,15 @@
+# multiagents templates · 官网
+# 面向爬虫与 AI agent 的统一指引（人可读版本见 AGENTS.md）
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /en.html
+
+# 无需爬取的路径（当前站点全是静态页，此处为将来扩展留位）
+Disallow: /tmp/
+
+# AI agent 专属指引：agents.txt 是「给 AI 的工作区说明」约定文件（爬虫可忽略，AI agent 应读取）；
+# llms.txt 是 LLM 友好的站点索引（事实口径 + 引用规则），LLM 爬虫优先读它
+# 说明本站是什么、如何引用、镜像与许可见仓库。
+Sitemap: sitemap.xml

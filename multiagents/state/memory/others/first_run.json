@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "title": "框架初次安装与使用",
+  "preamble": "> 克隆本框架后，让 agent 与用户把项目跑起来的最小路径。执行版是 skill `first-run`（源 `skills/first-run/SKILL.md`），本档是给人读的说明、依据与边界。",
+  "sections": [
+    {
+      "id": "01",
+      "title": "框架是什么",
+      "agent": "00_yuki",
+      "updated": "2026-10-17 19:40",
+      "body": "一句话：把一次研究工作组织成「多 agent 并行 + 源/视图分离」的工作区。\n\n- 多 agent 并行：同一工作区可同时有多个 agent 会话，且可来自不同客户端。身份唯一来源是 `agentctl.py me`——会话匹配则自动登记并打印身份卡；匹配不到就打印名册与三个选项（名册某项 / `new` 新增 / 暂不登记），退出码 3 是正常分支，不得自行认领。\n- 源 JSON 与导出视图：任务板源 `multiagents/state/todo.json`、视图是根 `TODO.md`；记忆源 `multiagents/state/memory/**/*.json`、视图是 `memory/**/*.md`。视图由机器生成，手改会被下次导出覆盖（`todo verify` / `memory verify --all` 能查出漂移），写入一律走 `agentctl.py`（对 JSON 加 flock 原子改）。\n- skill 按需注入：源 CLI 中立，放在 `skills/<id>/SKILL.md`；用 `multiagents/sync_skills.py` 镜像到 `.opencode/skills/`、`.claude/skills/`、`.agents/skills/`，`--check` 只查漂移。skill 正文不会自动进上下文，要由 agent 按身份卡的「先加载」清单显式加载。\n- 三个落点：任务板（可被认领）、记忆（共享知识）、简报（`agentctl.py report` 落 `multiagents/report/<日期时间>_<agent>.md`）。\n- 目录按主题归档：`scripts/<主题>/`、`data/<主题>/`、`output/<主题>/{report,img}/`；外部代码仓库另放 `repos/<名字>/`，第三方工具放 `tools/<名字>/`，细则见 skill `repo-conventions`。\n\n协议全文 `multiagents/README.md`，工具速查 `multiagents/SCRIPTS.md`。"
+    },
+    {
+      "id": "02",
+      "title": "初次安装（最小可跑）",
+      "agent": "00_yuki",
+      "updated": "2026-10-17 19:40",
+      "body": "| # | 步骤 | 命令 | 校验 |\n| --- | --- | --- | --- |\n| 0 | 自检 | `python3 multiagents/agentctl.py init --fix` | 输出 `✓`；`--fix` 会建 `/tmp/<agent>/` 与作业日志 |\n| 1 | 自报家门 | 无 | 讲清框架是什么、我是谁、能做什么 |\n| 2 | 问研究目标 | 无 | 用户要研究代码时，问清「上游 clone 还是链本机已有克隆」，据此定 `repos/<名字>/` |\n| 3 | 配路径 | `cp .env.example .env` | 按 `.env.example` 注释填需要的外部资源键，纯分析主题可留空 |\n| 4 | 装依赖（可选） | `python3 -m venv .venv && ./.venv/bin/python -m pip install -r requirements.txt` | 框架本体只用标准库，第 4 步只在要跑自己主题的脚本时才做 |\n| 5 | 同步 skill | `python3 multiagents/sync_skills.py` | `--check` 返回 0；自家 CLI 没发现 skill 时才要跑 |\n| 6 | 认领身份 | `python3 multiagents/agentctl.py me` | 退出码 0；退出码 3 则走 `new <角色>` |\n| 7 | 建主题 | `python3 multiagents/agentctl.py todo topic add \"主题名\" --owner <agent>` | `todo list` 出现新主题号 |\n| 8 | 报告结果 | 无 | 列出跑通项、卡点与下一步建议 |\n\n`.env` 的键按 `<主题>_<用途>` 命名（如 `<主题>_DATA_ROOT`、`<主题>_SOURCE`、`<主题>_TOOL_BIN`、`<主题>_REPO_<名字>`），具体以项目根的 `.env.example` 为准。框架本体不使用任何环境变量。"
+    },
+    {
+      "id": "03",
+      "title": "agent 档案的每个字段用在哪",
+      "agent": "00_yuki",
+      "updated": "2026-10-17 19:40",
+      "body": "一 agent 一档：`multiagents/<name>.json`（靠有没有 `name` 键与非档案 json 区分）。下表给出「字段是什么 + 它引用的文件/对象实例是什么」，可照此初始化一个新 agent。\n\n| 字段 | 是什么 | 引用的对象/文件实例 |\n| --- | --- | --- |\n| `name` | 唯一标识，格式 `<两位自增序号>_<role>` | 档文件名 `multiagents/<name>.json`；序号不复用、不回收 |\n| `role` | 角色短标识（如 `analyst`、`reviewer`、`guide`） | `name` 的后缀；改名须同步文件名与 `name` |\n| `display` | 中文职责说明，给人看 | 无 |\n| `client` | 当前客户端（默认 `opencode`） | 探测规则表 `multiagents/clients.json` |\n| `status` | `active` / `paused` / `blocked` / `done` | 无 |\n| `updated` | 最后写入时间戳 | 每次写操作与 `json touch` 刷新 |\n| `focus` | 一句话说在做什么 | 无 |\n| `sessions[]` | 已登记会话（`client`/`session_id`/`title`/`state`/`last_seen`） | 客户端会话实例（如 `ses_…`）；`me` 靠它匹配身份 |\n| `board[]` | 我认领的项目级任务号 | 任务板源 `multiagents/state/todo.json` 里的 `1.3` 这类编号（视图 `TODO.md`） |\n| `todo[]` | 我自己的私人清单（不共享、不可认领） | 存在本档内，用 `task add/done/…` 操作；与 `todo` 命令的项目板分家 |\n| `claims.files` | 我占用的项目文件或目录 | 具体路径（动手前先扫别人的 `claims`） |\n| `claims.tmp` | 我的临时目录 | `/tmp/<agent>/` |\n| `claims.resources` | 我占用的设备/工具等资源 | 如 `<工具名>`、`<设备名>`、`repo:<仓库名>` |\n| `memory[]` | 我维护或贡献的记忆档（含 `role`） | 源 JSON `multiagents/state/memory/<项目>/<档>.json` |\n| `skills[]` | 我这个 agent 该用的 skill ID | `skills/<id>/SKILL.md`（镜像在各 CLI 的 skills 目录）；`me` 会打印 |\n| `jobs[]` | 长任务登记（`name`/`pid`/`log`/`note`） | `log` 指向日志文件（如 `/tmp/<agent>/build.log`） |\n| `artifacts[]` | 我产出的文件 | 产出文件本体（脚本、图、报告） |\n| `handoff` | 交接留言（给某个 agent） | 无独立文件；`me` 打印 |\n| `created_by` | 由哪个 agent 或来源创建 | 生成方的 `name`（`spawn` 时写入）；随模板发布的档写 `framework` |\n| `history[]` | 变更记录（`t` 时间戳 + `e` 事件） | 无 |\n\n写入口只有 `agentctl.py json …`（`get`/`set`/`add`/`remove`/`history`/`touch`/`memory`/`job`/`handoff`/`artifact`）。不要手写 JSON，脚本用 `flock` 原子改写。"
+    },
+    {
+      "id": "04",
+      "title": "外部代码仓库放哪（repos/）",
+      "agent": "00_yuki",
+      "updated": "2026-10-17 19:40",
+      "body": "研究或依赖别人的代码时，先分清三类东西，别混在一起：\n\n| 你要做的事 | 放哪 | 形态 | 入版本库 |\n| --- | --- | --- | --- |\n| 读 / 逆向 / 参考某个代码库 | `repos/<名字>/` | clone 或 symlink | 否（`.gitignore` 已忽略） |\n| 跑 / 构建 / 打补丁的第三方工具 | `tools/<名字>/` | 源码与构建产物 | 视许可与体积定 |\n| 自己写的可复用模块 | `src/` | 会被 `import` 的库代码 | 是 |\n\n`src/` 只放自己写的代码：把上游代码混进 `src/`，之后分不清哪些是自己写的，许可与跟上游同步都变麻烦。\n\nclone 与 symlink 的取舍：\n\n| 形态 | 命令 | 什么时候用 |\n| --- | --- | --- |\n| clone | `git clone <url> repos/<名字>` | 默认。自包含、可复现、能 `git log` 与切 commit，上游变动不影响你 |\n| symlink | `ln -s <本机已有的克隆> repos/<名字>` | 磁盘紧张，或已有一份克隆要复用（例如打过 patch 还要在本机跑）；真实路径写进 `.env`（`<项目>_REPO_<名字>`） |\n\n`repos/` 不入版本库，所以要靠记忆补回可复现性：把 **URL + commit（或 tag / branch）+ 是否打过 patch** 写进 `memory/<项目>/`。要改上游代码就留 patch（`git diff > patches/<名字>.patch`），patch 与记忆档一起归档，上游更新时可重放。初始化时由 agent 问清这两种形态（skill `first-run` 第 2 步）。"
+    },
+    {
+      "id": "05",
+      "title": "00_yuki：默认引导员（長門有希）",
+      "agent": "01_emu-gui",
+      "updated": "2026-10-17 21:05",
+      "body": "- 角色 `yuki`，`display` = 長門有希（Nagato Yuki）· 框架默认引导员，随模板发布；`created_by` = `framework`。\n- 职责：介绍框架与 skill 机制、问清研究目标与目录、引导初始化、报告结果；不做具体研究任务（见其 `focus`）。**兼任本地 contributor**：经用户授意可修改与更新框架本体（`multiagents/`、`skills/`、根规约文件），该目录已在她 `claims.files` 里；改前照 skill `repo-conventions` 的加锁接口，改完 `init` / `.tests` / `sync_skills.py --check` 全绿才算完。\n- 人设：长门有希（Nagato Yuki）。开场前先用选项框问用户语言；开场白（中文 / 日本語 / English 三份）、「目录 + 能力」自我介绍，以及「角色的标志句只做直译」这条约束，都在 skill `first-run`。不想用这个人设就改档案的 `focus` / `handoff` 与 skill 的那两节。\n- 新用户有两种走法：`me --name 00_yuki` 认领它，或 `new <角色>` 建自己的 agent。认领前仍须由用户从名册里选。\n- 档案 `multiagents/00_yuki.json` 是全字段实例（含 `claims`、`memory[]`、`skills[]`、`jobs[]`、`artifacts[]`、`handoff`、`history[]`），可当初始化新 agent 的模板。\n- 它挂的 skill：`first-run`、`multiagent-workflow`、`repo-conventions`、`rigorous-writing`（改规约文本过文风门禁）。\n- 改过名：`00_guide` → `00_yuki`（2026-10-17，用 `agentctl.py rename`；档名、`name`、板子认领人、记忆节归属一并跟着改）。"
+    }
+  ],
+  "updated": "2026-10-17T19:18:58+08:00"
+}

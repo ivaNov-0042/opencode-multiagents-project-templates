@@ -1,0 +1,34 @@
+{
+  "note": "客户端探测规则表。detect_order 从前往后匹配；未命中记为 unknown，协议仍可用（靠用户确认）。verified=false 表示标记/会话 ID 获取方式尚未实测。",
+  "detect_order": ["opencode", "claude-code", "codex", "codebuddy"],
+  "clients": {
+    "opencode": {
+      "env": { "OPENCODE": "1" },
+      "session_env": ["OPENCODE_SESSION_ID"],
+      "enabled": true,
+      "verified": true,
+      "note": "已实测：OPENCODE_SESSION_ID 与当前会话一一对应"
+    },
+    "claude-code": {
+      "env": { "CLAUDECODE": "1" },
+      "session_env": [],
+      "enabled": false,
+      "verified": false,
+      "note": "env 标记待核；会话 ID 获取方式未知，届时靠用户点名"
+    },
+    "codex": {
+      "env": { "CODEX_SANDBOX": "1" },
+      "session_env": [],
+      "enabled": false,
+      "verified": false,
+      "note": "env 标记待核；历史会话可能落在 ~/.codex/sessions/YYYY/MM/*.jsonl"
+    },
+    "codebuddy": {
+      "env": {},
+      "session_env": [],
+      "enabled": false,
+      "verified": false,
+      "note": "env 标记待核；日志疑似落在 ~/.codebuddy/logs/<date>/<proj>__<hash>.log"
+    }
+  }
+}

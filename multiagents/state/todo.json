@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "updated": "2026-10-17T19:18:58+08:00",
+  "topics": [
+    {
+      "id": 1,
+      "title": "项目初始化",
+      "name": "初始化：填 .env、装依赖、认领身份、建第一个主题",
+      "owner": "00_yuki",
+      "prose": "本主题只放初始化相关的项，全过程见 skill `first-run`（源 `skills/first-run/SKILL.md`）。\n做完后用 `todo topic add \"主题名\" --owner <agent>` 建你自己的研究主题；本板只收「可被多 agent 认领」的粗粒度项。"
+    }
+  ],
+  "items": [
+    {
+      "id": "1.1",
+      "topic": 1,
+      "task": "按 skill `first-run` 完成初次安装（自检 → 依赖 → 认领身份 → 建主题）",
+      "owner": "00_yuki",
+      "state": "todo",
+      "updated": "2026-10-17 19:00",
+      "notes": [
+        "默认引导员 00_yuki 认领；各步完成后用 `agentctl.py todo done 1.1` 收尾（视图会同步重导）。"
+      ]
+    }
+  ]
+}

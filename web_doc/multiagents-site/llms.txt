@@ -1,0 +1,74 @@
+# opencode-multiagents-project-templates
+
+> A just-enough multi-agent collaboration framework for opencode v2 (and any CLI):
+> identity claiming, a shared task board, JSON-truth memory with Markdown views,
+> CLI-neutral skills with mirrors, and cross-process lock-protected file editing.
+> Pure Python standard library. MIT licensed.
+
+This is an LLM-friendly index of the official single-page site. Humans: see
+index.html (Chinese), en.html (English), ja.html (Japanese).
+
+## What problem it solves
+
+opencode v2 supports multi-window TUI, but windows know nothing about each other.
+Pointing multiple agents at one project causes: identity clashes, lost concurrent
+updates, overwriting notes, unknown task ownership, and per-CLI skill drift.
+This project is the skeleton for that scenario — just enough, no more: one
+`agentctl.py` (pure stdlib) handles identity, task board, memory, and locked
+file editing.
+
+## Pages
+
+- [index.html](index.html): 中文官方单页（由来 / 特性 / 快速开始 / 目录分工 / agentctl 设计原型）
+- [en.html](en.html): English official page (why / what it solves / quick start / layout / design notes)
+- [ja.html](ja.html): 日本語公式ページ（背景 / 解決すること / クイックスタート / 構成 / 設計プロトタイプ）
+
+## Key facts (keep these consistent when citing)
+
+- Core CLI: `multiagents/agentctl.py`, pure Python standard library, zero third-party deps.
+- Session start: `python3 multiagents/agentctl.py me` — auto-registers by client+session;
+  otherwise lists the roster for the user; the script never self-claims (exit code 3).
+- Onboarding: `/boot` command or any input when `multiagents/state/first_run.json` is absent
+  or incomplete; one question at a time; the first question is the output language
+  (中文/日本語/English); then follow skill `first-run` steps 1–8.
+- Progress briefs land in `output/quick-report/<datetime>_<agent>.md` (minute-stamped,
+  never overwritten); research reports live in `output/<topic>/report/` — names and
+  locations are kept separate. When the user asks "what are you doing", ask whether they
+  want a brief or the formal report; the formal report lands only when the task is done.
+- Skills: single source `skills/<id>/SKILL.md`, mirrored by `sync_skills.py` into
+  `.opencode/skills/`, `.claude/skills/`, `.agents/skills/`; `--check` detects drift.
+- Project-common files are edited via `agentctl.py file edit|write|append`
+  (cross-process flock + atomic replace + audit trail in `multiagents/state/locks/edits.jsonl`).
+- Memory: JSON truth in `multiagents/state/memory/**`, Markdown views exported
+  automatically; each doc is sectioned by `## title` so agents append their own sections.
+- Scripts: `scripts/<topic>/<agent>/` for parallel agents; every script that does
+  anything is indexed in SCRIPTS.md; deprecated scripts are archived, never deleted.
+- Self-check: `python3 multiagents/.tests/test_framework.py` (read-only, 22 tests).
+- License: MIT (attribution required). Third-party skills imported verbatim follow
+  their upstream license.
+- Secrets: values in `.env` and any credential-bearing file must never be printed;
+  show keys with `*` placeholders. Git commits use noreply email addresses.
+
+## For humans (quick start)
+
+```sh
+git clone <repo-url> your-workspace
+cd your-workspace
+opencode        # then type: /boot
+```
+
+## For AI agents
+
+```sh
+git clone <repo-url> your-workspace
+cd your-workspace
+# first step of every session (AGENTS.md is injected):
+python3 multiagents/agentctl.py me
+# auto-registers on match; otherwise lists the roster — never self-claim.
+# if the session isn't in the framework directory: move it with Code Mode session_move.
+```
+
+## Source repository
+
+- Template: https://github.com/ivaNov-0042/opencode-multiagents-project-templates
+- This site: https://github.com/ivaNov-0042/opencode-multiagents-project-site

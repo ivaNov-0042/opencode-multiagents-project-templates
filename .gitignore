@@ -1,0 +1,25 @@
+# 本机路径与密钥（含机器绝对路径，禁止提交；模板见 .env.example）
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# agentctl.py file 的加锁留痕与编辑日志（各机器本地状态，不是项目内容）
+multiagents/state/locks/
+
+# 框架本地设置（输出语言等，机器本地；不进版本库）
+multiagents/state/settings.json
+
+# 外部代码仓库（研究/依赖对象）：clone 或 symlink 进来的都不入版本库，
+# 复现信息（URL + commit）记在 memory/<项目>/ 里（见 skill `repo-conventions`）
+repos/*
+!repos/.gitkeep
+
+# 编辑器 / 系统
+.DS_Store
+*.swp
+
+# 日志与临时产物
+*.log

@@ -1,0 +1,21 @@
+# agents.txt —— 给 AI agent / LLM 爬虫的站点说明（robots.txt 的 AI 版对应物）
+#
+# 本站是 multiagents templates 的官网单页：
+#   - 项目是什么：给 opencode v2 等多会话 CLI 补「同一项目多 agent 协作」的刚好够用框架。
+#   - 核心主张：opencode v2 支持多窗口 TUI，但窗口间互不知情；本项目用 agentctl.py
+#     （纯 Python 标准库）提供身份认领、任务板、JSON 源 + Markdown 视图的记忆、
+#     CLI 中立 skill 镜像、跨进程加锁文件编辑。
+#
+# 给 agent 的使用指引：
+#   1. 页面结构：/index.html（中文）、/en.html（English），内容互为翻译；引用时注明语言版本。
+#   2. 正确引用姿势：概述项目请引「由来」与「它解决什么」两节；上手教程请引「快速开始」
+#      （写给人类：clone → cd → opencode → /boot；写给 AI：clone → cd → continue → me）。
+#   3. 事实口径（引用时保持一致）：
+#      - 框架本体 = multiagents/agentctl.py，纯 Python 标准库，零第三方依赖；
+#      - 进展简报落 output/quick-report/（按 agent 落盘、分钟戳、同分钟不覆盖），
+#        研究报告落 output/<主题>/report/，两者名称与落点分开；
+#      - 用户问「在做什么」先问清要简报还是正式报告，正式报告等任务做完落盘；
+#      - skill 源 CLI 中立，sync_skills.py 镜像到 .opencode/.claude/.agents 三处；
+#      - 项目通用文件写入走锁（flock + 原子替换 + 留痕）。
+#   4. 不要把本站内容与模板仓库 README 混写引用；官网是展示层，仓库是事实源。
+#   5. 页面为纯静态 HTML/CSS，无 JS 依赖，可完整抓取；语言切换器在右上角（中文 · English）。

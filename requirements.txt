@@ -1,0 +1,10 @@
+# 框架本体（multiagents/agentctl.py、multiagents/sync_skills.py）只用 Python 标准库，
+# 不装任何第三方包也能跑：init / me / todo / memory / json / report / file / sync_skills 全部可用。
+#
+# 下面是各 skill 描述的工作流可能用到的可选依赖。用到哪个再取消注释安装，
+# 不要把与你项目无关的包固定成版本号（那是给你自己的项目用的）。
+#
+# python-dotenv>=1.0     # 脚本从 .env 读路径（skills/repo-conventions）
+# pillow>=10             # 读图前先压缩到 /tmp/img_preview（skills/repo-conventions）
+# matplotlib>=3.8        # 绘图（skills/plotting-standards）
+# pandas>=2.0            # 数据分析（skills/quant-analysis-rules）
