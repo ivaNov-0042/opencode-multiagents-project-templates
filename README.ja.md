@@ -1,98 +1,77 @@
-# opencode-multiagents-project-templates（マルチエージェント研究ワークスペース・テンプレート）
+# multi_agents_templates（マルチエージェント研究ワークスペース・テンプレート）
 
-> 🌐 [简体中文](README.md) · [English](README.en.md) · 日本語
+> [简体中文](README.md) · [English](README.en.md) · 日本語
 
-「複数のエージェントセッションがひとつのワークスペースで並列に作業する」ために必要な骨格を、開封すぐ使えるディレクトリにまとめました：アイデンティティ承認、承認可能なプロジェクトタスクボード、JSON ソース + Markdown ビューのメモリ、CLI 中立スキル（ミラー付き）、プロセス間ロック付きファイル編集。
+本リポジトリは、複数の AI エージェントセッションが同一ワークスペース内で並行協調作業を行うための基盤骨格を提供します。セッションによるアイデンティティ自動紐付け、チームタスクボード、JSON 単一事実源（SSOT）と Markdown ビューを分離した共有メモリ、CLI 中立なスキル配信メカニズム、プロセス間ファイルロックによる安全な編集インターフェースを備えています。
 
-## 开箱：写给人类 / 写给 AI
+## クイックスタート
 
-**人間向け**： `git clone <repo-url> your-workspace` → `cd` → open opencode and type `/boot` (any input also triggers onboarding).
-The guide `00_yuki` asks you (in three languages) to type `init`, then walks you through the 8-step setup
-(language, identity, paths, first topic); you just answer questions.
+### 人間向け操作フロー：
+1. クローンしてディレクトリへ移動：`git clone <repo-url> <workspace_name> && cd <workspace_name>`。
+2. ターミナル環境を起動し、`/boot` と入力（または任意の初期指示でセットアップガイドを起動）。
+3. ガイド役の `00_yuki` が対話言語の確認、研究テーマの設計、環境変数の設定、作業アイデンティティの割り当てを順次サポートします。
 
-**AI（エージェント）向け**： `git clone <repo-url> your-workspace` → `cd` → continue — first step of every session:
-`python3 multiagents/agentctl.py me` (auto-registers on match; otherwise it lists the roster for the user to pick — **never self-claim**).
-Load every skill in the profile's `skills[]` via the `skill` tool per the "load first" checklist; if onboarding is incomplete, ask one question at a time
-(first one: output language), following skill `first-run` steps 1–8. If this directory has no framework: clone into a subdirectory,
-then move the session with Code Mode `session_move` — no manual `cd` needed.
-Write through locks (`file` / `todo` / `memory`); finish with `init` / `verify` / `.tests`.
+### AI エージェント向け操作フロー：
+1. セッション起動時の第一歩：`python3 multiagents/agentctl.py me` を実行し、現在のセッションに紐づくエージェントの身元を確認。
+2. 身元が確定したら、身元カードの指示に従って対応スキル（`skills[]`）をロード。名簿に未登録の場合は選択肢を提示してユーザーに確認を求め、自ら勝手に身元を推定しない。
+3. ワークスペースの共通ファイルを編集する際はロック付きインターフェース（`python3 multiagents/agentctl.py file`）を呼び出し、タスクの進捗は `agentctl.py todo` で管理、分析結果は共有メモリ（`agentctl.py memory`）へ蓄積。
 
-## サイトとドキュメント
+## アーキテクチャの背景
 
-- Official single-page site (zh/en/ja): `web_doc/multiagents-site/` (`index.html` Chinese, `en.html` English,
-  `ja.html` 日本語, switcher top-right; plus `robots.txt`, `agents.txt` (AI-agent guidance), `sitemap.xml`).
-- Local preview: `python3 -m http.server 8000 -d web_doc/multiagents-site`, then open `http://127.0.0.1:8000/`.
-- Deploy: push a separate repo (e.g. `opencode-multiagents-project-site`), then Settings → Pages → deploy from branch `master` root;
-  visit `https://<user>.github.io/opencode-multiagents-project-site/`. Free accounts cannot use Pages on private repos — make it public first.
+現代の AI 支援開発では、複数のセッション、マルチウィンドウ、または異なるクライアント（Antigravity、OpenCode、Claude Code、Codex など）を併用して複雑なタスクを並列処理することが一般的です。しかし協調ルールがない場合、同一ロールの取り合い、同一ファイルへの同時編集による更新消失、コンテキスト忘れによる重複調査、各環境でのプロンプトやルールの乖離など、多くの摩擦が生じます。
 
-Framework self-check: `python3 multiagents/.tests/test_framework.py` (read-only; covers invariants / read-only surface / field-reference integrity, see `multiagents/.tests/README.md`).
+本プロジェクトは、マルチエージェント協調に不可欠な最小限の基本メカニズムを抽象化しています：
+- **統一制御層**：標準ライブラリのみで書かれた `agentctl.py` により、身元割り当て、タスクボード、共有メモリ、ロック付きファイル編集を一元管理。
+- **単一事実源（SSOT）アーキテクチャ**：タスクボードとメモリデータは JSON を単一事実源とし、Markdown ビューはスクリプトにより自動生成され、解釈の齟齬を防ぎます。
+- **スキルの中立化**：スキルは `skills/` を単一事実源として管理し、スクリプトによって各クライアントの設定ディレクトリへ自動ミラー配信。
 
-The framework core uses only the Python standard library: `multiagents/agentctl.py` and `multiagents/sync_skills.py` need no third-party packages.
-`requirements.txt` lists optional dependencies used by skill workflows.
+## 対応エージェントおよびクライアント環境
 
-## 作った理由
+フレームワークは環境識別子によりセッションを自動認識し、主要なエージェント CLI および開発環境をシームレスにサポートします：
+- **Antigravity**：`ANTIGRAVITY_AGENT` および `ANTIGRAVITY_CONVERSATION_ID` 環境変数を自動認識し、スキルを `.agents/skills/` にミラー配信。
+- **OpenCode**：マルチウィンドウ TUI セッションを自動検出し、組み込みの `/boot` プラグイン（`.opencode/plugins/multiagents/`）を搭載、スキルを `.opencode/skills/` にミラー配信。
+- **Claude Code**：独立ターミナルセッションを検出し、スキルを `.claude/skills/` にミラー配信。
+- **Codex / CodeBuddy などの汎用環境**：環境識別子の検出および `.agents/` オープンスキルディレクトリ仕様に対応。
 
-多様なエージェント環境（Antigravity、OpenCode、Claude Code、Codex など）でのマルチセッション・並列作業に対応しています。
-複数のセッションウィンドウを同時に開いて並列作業ができます——ウィンドウ単体の体験はとても良い。
+## コアメカニズム対照表
 
-しかしウィンドウ同士は互いの存在を知りません。同じプロジェクトに複数エージェントを向けると問題がすぐ出ます：
-2 つのセッションが同じアイデンティティを取り合う、同じファイルで更新が消える、メモが互いに上書きされる、他がどのタスクを取ったか分からない、
-CLI ごとのスキルコピーが徐々にズレる。ウィンドウが増えるほど、協調そのものが一番難しい仕事になります。
-
-本プロジェクトはまさにそのシナリオのための骨格——ちょうど足りる分だけ：
-one `agentctl.py` (pure stdlib) handling identity, task board, memory, and locked file editing;
-claim identity at session start, write through locks, each agent writes its own memory sections, skills live in one source mirrored everywhere.
-複雑なプロジェクトで「複数エージェントが並列に作業する」ための最小公約数は、すべてここにあります。
-
-## 解決すること
-
-| 課題 | 手法 |
+| 課題シナリオ | フレームワークの解決策 |
 | --- | --- |
-| Two sessions clash on identity | First step `agentctl.py me` registers by client & session; when unsure it lists the roster for the user — the script never self-claims |
-| Unknown who does what | Task board `todo` (JSON truth, `TODO.md` view) supports claiming, notes, handoff; each agent also has a private checklist `task` |
-| Long memory overwriting | Memory truth is JSON, `.md` exported by script; docs split into sections by `## title` — two agents write different sections |
-| Skills drifting per CLI | One CLI-neutral source `skills/<id>/SKILL.md`; `sync_skills.py` mirrors into CLI dirs, `--check` detects drift |
-| Concurrent edits lose updates | Project-common files go through `agentctl.py file`: cross-process flock + atomic replace + audit trail |
+| 複数セッション間での身元衝突 | 起動時に `agentctl.py me` を実行しセッション ID に基づきプロファイルを自動照合。未一致時はユーザーが選択 |
+| タスク分担と進捗の乖離 | チームタスクボード `todo`（JSON SSOT、ビュー `TODO.md`）で着手・引き継ぎ・完了を追跡。個人のToDoは `task` で管理 |
+| 共有ナレッジの上書き消失 | メモリの事実源はセクションごとに分割され排他書き込み。複数エージェントが各専用セクションに独立追記 |
+| クライアント間でのスキルルールのズレ | `skills/<id>/SKILL.md` で一元管理し、`sync_skills.py` で各 CLI ディレクトリへミラー同期 |
+| 同時ファイル編集による変更の上書き | 共通ファイルは `agentctl.py file` 経由で編集。flock によるプロセス間排他 ＋ 一時ファイルのアトミック置換 ＋ 監査ログを記録 |
 
-## ディレクトリ構成
+## ディレクトリ構成一覧
 
-| 路径 | 是什么 |
+| ディレクトリ / ファイル | 役割説明 |
 | --- | --- |
-| `AGENTS.md` | 面向 agent 的硬约束与指针，开工前读 |
-| `multiagents/` | 框架本体：名册与档案、任务板与记忆源（`state/`）、`agentctl.py`、`sync_skills.py`、协议 `README.md` |
-| `skills/` | skill 源（CLI 中立），一 skill 一目录 |
-| `memory/` | 记忆视图（`.md` 为生成物）；源在 `multiagents/state/memory/` |
-| `scripts/` | 脚本，按主题分目录，各配 `SCRIPTS.md` |
-| `repos/` | 外部代码仓库（研究或依赖对象）：clone 或 symlink 进来，默认不入版本库；复现信息记 `memory/` |
-| `data/` | 清洗后的中间数据 |
-| `output/` | 报告与图片：`output/<主题>/{report,img}/` |
-| `TODO.md` | 任务板视图（生成物），源 `multiagents/state/todo.json` |
-| `tools/` | 第三方工具与源码 |
+| `AGENTS.md` | AI エージェント向けの主要規約およびインデックスエントリ |
+| `multiagents/` | フレームワーク制御ツール、名簿プロファイル、単一事実源データ（`state/`）、プロトコル仕様 |
+| `skills/` | スキルの単一事実源（CLI 中立）、1スキル1ディレクトリ |
+| `memory/` | 共有知識と研究日誌のビュー（`.md` は閲覧専用の生成物、事実源は `multiagents/state/memory/`） |
+| `scripts/` | テーマごとに整理された分析スクリプト（内部は `SCRIPTS.md` で索引） |
+| `repos/` | 外部依存リポジトリまたは参考コード（デフォルトで Git 管理外） |
+| `data/` | クリーニング済みの構造化中間データ |
+| `output/` | 最終成果物（分析レポートおよび図表：`output/<テーマ>/{report,img}/`） |
+| `TODO.md` | チームタスクボードの出力ビュー（事実源は `multiagents/state/todo.json`） |
+| `tools/` | サードパーティ依存ツールのソースおよびビルドディレクトリ |
 
-## 自分のプロジェクトの土台にする
+## プロジェクトへの適用手順
 
-模板不含任何项目专属内容。落地顺序：建主题（`todo topic add`）→ 建目录（`scripts/<主题>/`、`data/<主题>/`、
-`output/<主题>/{report,img}/`）→ 按需加项目专属 skill（`skills/<id>/SKILL.md` 并在 `AGENTS.md` 的 skill 地图补一行）
-→ 把机器相关路径放进 `.env`（`cp .env.example .env`，真实 `.env` 不进版本库）。
+本テンプレートには固有の業務ロジックは含まれていません。新しいプロジェクトへ適用する標準フロー：
+1. **研究テーマの追加**：`python3 multiagents/agentctl.py todo topic add "テーマ名"` を実行。
+2. **ディレクトリ骨格の作成**：`scripts/<テーマ>/`、`data/<テーマ>/`、`output/<テーマ>/{report,img}/` を作成。
+3. **専用スキルの拡張**：`skills/<id>/SKILL.md` に固有の業務規程を作成し、`AGENTS.md` のスキルマップに登録。
+4. **ローカル環境変数の設定**：`.env.example` を `.env` にコピーして環境固有のパスを設定（`.env` は Git 管理対象外）。
 
-要研究或依赖别人的代码时，先问清代码在哪，再决定 `git clone` 到 `repos/<名字>/`（自包含、可复现）还是
-`ln -s` 链到本机已有的克隆（省磁盘、两边同步），两种都把 URL + commit 记进 `memory/<项目>/`；
-要跑/构建的第三方工具放 `tools/<名字>/`，自己写的模块放 `src/`。细则见 skill `repo-conventions`。
+## 多言語対応
 
-## 多言語出力
-
-框架的 CLI 输出走资源字符串：源码里是 `i18n.t("中文原文", **占位)`，译文在 `multiagents/locales/<lang>.json`，**键就是中文原文**。中文是源语言、不需要目录，查不到译文就回落中文（漏译因此是静默的，用 `--check` 查）。随模板附 `ja` 一份完整目录，可照着加别的语言。
-
-```bash
-python3 multiagents/agentctl.py lang            # 看当前语言与可选语言
-python3 multiagents/agentctl.py lang ja         # 持久切换（写 multiagents/state/settings.json）
-python3 multiagents/agentctl.py --lang ja todo list   # 只影响本次运行
-AGENTCTL_LANG=zh python3 multiagents/agentctl.py roster   # 环境变量
-```
-
-维护目录：`python3 multiagents/i18n_extract.py`（补新 msgid、删失效键）｜`--new <lang>`（建骨架）｜`--check`（查漏译与占位符不一致）。
+CLI 出力はリソース辞書に基づいて国際化されています。コード内では `i18n.t("原文", **kwargs)` で呼び出され、中国語の原文が辞書キーとなり、翻訳データは `multiagents/locales/<lang>.json` で管理されます。
+- 現在の言語の確認・切り替え：`python3 multiagents/agentctl.py lang [code]`
+- 翻訳辞書の抽出・検証：`python3 multiagents/i18n_extract.py --check`
 
 ## ライセンス
 
-MIT——署名を保持する最も寛容なライセンス：利用・改変・配布（商用含む）自由、ただしコピーに著作権とライセンス表示を残すこと。
-詳細は [LICENSE](LICENSE)。スキルソースも同ライセンス。上流からそのまま取り込んだサードパーティスキル（例：`rigorous-writing`）は上流のライセンスに従います。
+本プロジェクトは MIT ライセンスに基づきオープンソースとして公開されています。詳細は [LICENSE](LICENSE) を参照してください。サードパーティ製スキルモジュールは各上流のライセンスに従います。
