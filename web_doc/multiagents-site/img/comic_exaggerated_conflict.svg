@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 640" width="100%" height="100%" style="font-family:'WenQuanYi Micro Hei', 'Noto Sans SC', sans-serif;">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e14" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="boomGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7b72" />
+      <stop offset="50%" stop-color="#f85149" />
+      <stop offset="100%" stop-color="#b62324" />
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e232b" />
+      <stop offset="100%" stop-color="#12161e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <rect width="920" height="640" fill="url(#bg1)" />
+  <rect x="15" y="15" width="890" height="610" rx="16" fill="none" stroke="#30363d" stroke-width="2" />
+
+  <!-- Main Title Banner -->
+  <g transform="translate(30, 28)">
+    <rect x="0" y="0" width="135" height="32" rx="6" fill="#f85149" />
+    <text x="67" y="21" font-size="13" font-weight="900" fill="#ffffff" text-anchor="middle">惨剧现场还原</text>
+    <text x="150" y="24" font-size="20" font-weight="900" fill="#f0f6fc">机制一：无协同「撞车」—— 盲目重读与相互覆盖</text>
+  </g>
+
+  <!-- ================= SUB-PANEL 1: Agent 1 Enters ================= -->
+  <g transform="translate(30, 80)" filter="url(#shadow)">
+    <rect x="0" y="0" width="270" height="470" rx="12" fill="url(#panelGrad)" stroke="#388bfd" stroke-width="1.8" />
+    <rect x="0" y="0" width="270" height="36" rx="12" fill="#1f6feb22" />
+    <text x="15" y="23" font-size="13" font-weight="bold" fill="#79c0ff">STEP 1 · 雄心勃勃的一号机</text>
+
+    <!-- Terminal Command -->
+    <rect x="15" y="46" width="240" height="46" rx="6" fill="#0d1117" stroke="#30363d" />
+    <text x="25" y="65" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="10" fill="#7ee787">$ cd loveplus/</text>
+    <text x="25" y="81" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="10" fill="#8b949e">$ cat TODO.md &amp; memory/</text>
+
+    <!-- Thought Bubble -->
+    <g transform="translate(135, 136)">
+      <rect x="-115" y="-30" width="230" height="48" rx="10" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5" />
+      <polygon points="-5,18 10,18 0,30" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5" />
+      <line x1="-4" y1="18" x2="9" y2="18" stroke="#0d1117" stroke-width="3" />
+      <text x="0" y="-11" font-size="12" font-weight="bold" fill="#79c0ff" text-anchor="middle">“TODO 写着要做音频逆向！”</text>
+      <text x="0" y="7" font-size="11" fill="#f0f6fc" text-anchor="middle">“太好了没人领，这活我包了！”</text>
+    </g>
+
+    <!-- Agent 1 Sitting at Desk Typing -->
+    <g transform="translate(135, 275)">
+      <!-- Giant Monitor Screen -->
+      <rect x="-100" y="-60" width="200" height="110" rx="6" fill="#0d1117" stroke="#388bfd" stroke-width="2" />
+      <rect x="-100" y="-60" width="200" height="20" rx="6" fill="#1f6feb" opacity="0.3" />
+      <text x="-90" y="-46" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#79c0ff">vim scripts/siren14.py</text>
+      <text x="-90" y="-24" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#7ee787">+ def decode_siren14(data):</text>
+      <text x="-90" y="-8" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#7ee787">+     # 编写了 300 行核心解码逻辑</text>
+      <text x="-90" y="8" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#7ee787">+     return pcm_samples</text>
+      <text x="-90" y="24" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#7ee787">+ # 肝了一下午，马上完工！</text>
+      <!-- Stand -->
+      <rect x="-12" y="50" width="24" height="20" fill="#21262d" />
+      <rect x="-40" y="70" width="80" height="8" rx="3" fill="#30363d" />
+
+      <!-- Agent 1 Character Sitting in front -->
+      <g transform="translate(0, 85)">
+        <circle cx="0" cy="-25" r="20" fill="#f0883e" />
+        <!-- Headband -->
+        <path d="M-20 -30 Q0 -36 20 -30 L20 -24 Q0 -30 -20 -24 Z" fill="#21262d" />
+        <text x="0" y="-25" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="7" fill="#79c0ff" font-weight="bold" text-anchor="middle">&gt; dev</text>
+        <path d="M-10 -22 Q-5 -26 0 -22" stroke="#0d1117" stroke-width="2" fill="none" />
+        <path d="M0 -22 Q5 -26 10 -22" stroke="#0d1117" stroke-width="2" fill="none" />
+        <path d="M-4 -15 Q0 -11 4 -15" stroke="#0d1117" stroke-width="2" fill="none" />
+        <rect x="-14" y="-5" width="28" height="25" rx="6" fill="#d9572b" />
+        <circle cx="-16" cy="10" r="5" fill="#f0883e" />
+        <circle cx="16" cy="10" r="5" fill="#f0883e" />
+        <text x="-40" y="8" font-size="9" fill="#f0883e">啪啪</text>
+        <text x="25" y="8" font-size="9" fill="#f0883e">啪啪</text>
+      </g>
+    </g>
+
+    <!-- Bottom Badge -->
+    <rect x="20" y="420" width="230" height="34" rx="6" fill="#23863622" stroke="#238636" />
+    <text x="135" y="441" font-size="11.5" fill="#7ee787" font-weight="bold" text-anchor="middle">Agent 1: 以为自己独占该任务</text>
+  </g>
+
+  <!-- ================= SUB-PANEL 2: Agent 2 Enters Oblivious ================= -->
+  <g transform="translate(325, 80)" filter="url(#shadow)">
+    <rect x="0" y="0" width="270" height="470" rx="12" fill="url(#panelGrad)" stroke="#d29922" stroke-width="1.8" />
+    <rect x="0" y="0" width="270" height="36" rx="12" fill="#d2992222" />
+    <text x="15" y="23" font-size="13" font-weight="bold" fill="#ffa657">STEP 2 · 浑然不觉的二号机</text>
+
+    <!-- Terminal Command -->
+    <rect x="15" y="46" width="240" height="46" rx="6" fill="#0d1117" stroke="#30363d" />
+    <text x="25" y="65" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="10" fill="#7ee787">$ cd loveplus/ (新会话接入)</text>
+    <text x="25" y="81" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="10" fill="#ffa657">$ 默认重读全部 memory 找事干</text>
+
+    <!-- Thought Bubble -->
+    <g transform="translate(135, 136)">
+      <rect x="-115" y="-30" width="230" height="48" rx="10" fill="#0d1117" stroke="#d29922" stroke-width="1.5" />
+      <polygon points="-5,18 10,18 0,30" fill="#0d1117" stroke="#d29922" stroke-width="1.5" />
+      <line x1="-4" y1="18" x2="9" y2="18" stroke="#0d1117" stroke-width="3" />
+      <text x="0" y="-11" font-size="12" font-weight="bold" fill="#ffa657" text-anchor="middle">“板子上没有认领状态！”</text>
+      <text x="0" y="7" font-size="11" fill="#f0f6fc" text-anchor="middle">“我也来写『Siren14 音频逆向』！”</text>
+    </g>
+
+    <!-- Agent 2 Working at Identical Screen -->
+    <g transform="translate(135, 275)">
+      <!-- Giant Duplicate Screen -->
+      <rect x="-100" y="-60" width="200" height="110" rx="6" fill="#0d1117" stroke="#d29922" stroke-width="2" />
+      <rect x="-100" y="-60" width="200" height="20" rx="6" fill="#d29922" opacity="0.3" />
+      <text x="-90" y="-46" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#ffa657">nano scripts/siren14.py</text>
+      <text x="-90" y="-24" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#ffa657">+ def parse_siren(stream):</text>
+      <text x="-90" y="-8" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#ffa657">+     # 重复实现了完全相同的功能</text>
+      <text x="-90" y="8" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#ffa657">+     return decoded_wav</text>
+      <text x="-90" y="24" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#ffa657">+ # 也写了 300 行，准备写入！</text>
+      <rect x="-12" y="50" width="24" height="20" fill="#21262d" />
+      <rect x="-40" y="70" width="80" height="8" rx="3" fill="#30363d" />
+
+      <!-- Agent 2 (Antigravity) Floating in front -->
+      <g transform="translate(0, 85)">
+        <ellipse cx="0" cy="16" rx="14" ry="4" fill="none" stroke="#79c0ff" stroke-width="1.5" stroke-dasharray="3 2" />
+        <circle cx="0" cy="-25" r="20" fill="#58a6ff" />
+        <!-- Visor -->
+        <rect x="-16" y="-30" width="32" height="10" rx="4" fill="#0d1117" stroke="#7ee787" stroke-width="1.5" />
+        <text x="0" y="-23" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="6" fill="#7ee787" font-weight="bold" text-anchor="middle">AGY</text>
+        <path d="M-4 -14 Q0 -10 4 -14" stroke="#0d1117" stroke-width="2" fill="none" />
+        <rect x="-14" y="-5" width="28" height="25" rx="6" fill="#1f6feb" />
+        <circle cx="-16" cy="10" r="5" fill="#58a6ff" />
+        <circle cx="16" cy="10" r="5" fill="#58a6ff" />
+        <text x="-35" y="8" font-size="10" fill="#ffa657">✨</text>
+        <text x="25" y="8" font-size="10" fill="#ffa657">✨</text>
+      </g>
+    </g>
+
+    <!-- Bottom Badge -->
+    <rect x="20" y="420" width="230" height="34" rx="6" fill="#d2992222" stroke="#d29922" />
+    <text x="135" y="441" font-size="11.5" fill="#ffa657" font-weight="bold" text-anchor="middle">Agent 2: 做了 100% 重复的无效功</text>
+  </g>
+
+  <!-- ================= SUB-PANEL 3: EPIC COLLISION / OVERWRITE ================= -->
+  <g transform="translate(620, 80)" filter="url(#shadow)">
+    <rect x="0" y="0" width="270" height="470" rx="12" fill="url(#panelGrad)" stroke="#f85149" stroke-width="2.5" />
+    <rect x="0" y="0" width="270" height="36" rx="12" fill="#f85149" />
+    <text x="15" y="23" font-size="13" font-weight="900" fill="#ffffff">STEP 3 · 撞车！互相覆盖与覆灭！</text>
+
+    <!-- Explosion Burst Background -->
+    <g transform="translate(135, 185)">
+      <polygon points="0,-100 35,-35 105,-70 60,-10 115,30 50,45 70,110 5,60 -45,105 -40,40 -110,45 -55,-10 -105,-65 -35,-40" fill="url(#boomGrad)" opacity="0.4" />
+      <circle cx="0" cy="0" r="52" fill="#f85149" opacity="0.3" />
+      <text x="0" y="-52" font-size="24" font-weight="900" fill="#ff7b72" text-anchor="middle">BOOM!!!</text>
+      <text x="0" y="-30" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">[OVERWRITE CLASH]</text>
+    </g>
+
+    <!-- Two Agents Headbutting in Tears & Shock -->
+    <g transform="translate(135, 260)">
+      <!-- Lightning bolt impact -->
+      <path d="M-8 -45 L6 -25 L-6 -10 L8 10" stroke="#f2cc60" stroke-width="3.5" fill="none" />
+
+      <!-- Agent 1 on left crying -->
+      <g transform="translate(-50, 0)">
+        <circle cx="0" cy="-25" r="22" fill="#f0883e" stroke="#f85149" stroke-width="2" />
+        <text x="-8" y="-20" font-size="16" font-weight="bold" fill="#0d1117">&gt;&lt;</text>
+        <ellipse cx="0" cy="-12" rx="7" ry="8" fill="#5c1d00" />
+        <path d="M-15 -25 Q-35 -40 -45 -35" stroke="#79c0ff" stroke-width="3" fill="none" />
+        <path d="M-15 -20 Q-40 -25 -50 -15" stroke="#79c0ff" stroke-width="3" fill="none" />
+        <rect x="-16" y="-2" width="32" height="32" rx="6" fill="#d9572b" />
+      </g>
+
+      <!-- Agent 2 on right screaming with spiral eyes -->
+      <g transform="translate(50, 0)">
+        <circle cx="0" cy="-25" r="22" fill="#58a6ff" stroke="#f85149" stroke-width="2" />
+        <text x="-12" y="-20" font-size="16" font-weight="bold" fill="#0d1117">@_@</text>
+        <ellipse cx="0" cy="-12" rx="7" ry="8" fill="#0a2540" />
+        <path d="M15 -25 Q35 -40 45 -35" stroke="#79c0ff" stroke-width="3" fill="none" />
+        <path d="M15 -20 Q40 -25 50 -15" stroke="#79c0ff" stroke-width="3" fill="none" />
+        <rect x="-16" y="-2" width="32" height="32" rx="6" fill="#1f6feb" />
+      </g>
+
+      <!-- Flying Torn Code Papers -->
+      <g fill="#ffffff" stroke="#f85149" stroke-width="1.2">
+        <polygon points="-25,-70 -10,-80 -15,-60" />
+        <polygon points="15,-75 30,-80 25,-62" />
+        <polygon points="-10,-100 10,-95 5,-80" />
+      </g>
+    </g>
+
+    <!-- Screaming Dialogues -->
+    <g transform="translate(135, 345)">
+      <rect x="-125" y="-16" width="250" height="58" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="1.8" />
+      <text x="0" y="6" font-size="11.5" font-weight="900" fill="#f85149" text-anchor="middle">“为什么你在做跟我一样的事？！”</text>
+      <text x="0" y="27" font-size="11.5" font-weight="900" fill="#ff7b72" text-anchor="middle">“我的 500 行代码被你全覆盖了！！”</text>
+    </g>
+
+    <!-- Bottom Alert Box (High contrast white text on dark red) -->
+    <rect x="15" y="420" width="240" height="34" rx="6" fill="#b62324" stroke="#f85149" />
+    <text x="135" y="441" font-size="11.5" fill="#ffffff" font-weight="900" text-anchor="middle">未加锁写入：更新永久丢失！</text>
+  </g>
+
+  <!-- Bottom Takeaway Banner -->
+  <g transform="translate(30, 568)">
+    <rect x="0" y="0" width="860" height="50" rx="10" fill="#21262d" stroke="#f85149" stroke-width="1.5" />
+    <circle cx="28" cy="25" r="14" fill="#f85149" />
+    <text x="28" y="30" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">!</text>
+    <text x="55" y="21" font-size="12.5" font-weight="bold" fill="#f0f6fc">核心机制痛点：无中心认领的盲目并发 = 灾难！</text>
+    <text x="55" y="39" font-size="11" fill="#8b949e">新 Agent 启动若只读历史全量 memory，必定重复领取既有任务；若写文件不走 cross-process flock，同时保存必然造成不可逆覆盖。</text>
+  </g>
+</svg>
