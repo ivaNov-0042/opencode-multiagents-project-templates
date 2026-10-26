@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="bubbleGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#21262d" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#238636" />
+      <stop offset="100%" stop-color="#2ea043" />
+    </linearGradient>
+    <filter id="shadow2" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad2)" />
+  <rect x="20" y="20" width="760" height="460" rx="16" fill="none" stroke="#30363d" stroke-width="2" />
+
+  <!-- Top Title Banner -->
+  <rect x="35" y="32" width="105" height="26" rx="6" fill="#238636" />
+  <text x="87" y="50" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">EPISODE 02</text>
+  <text x="155" y="52" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="18" font-weight="bold" fill="#f0f6fc">秩序建立：专属工牌与透明任务流</text>
+
+  <!-- Divider Line -->
+  <line x1="390" y1="80" x2="390" y2="400" stroke="#30363d" stroke-dasharray="4 4" stroke-width="2" />
+
+  <!-- ================= LEFT HALF: IDENTITY REGISTRATION (agentctl me) ================= -->
+  <!-- Yuki (Guide) -->
+  <g transform="translate(110, 240)" filter="url(#shadow2)">
+    <!-- Desk / Terminal Counter -->
+    <rect x="-40" y="45" width="90" height="70" rx="6" fill="#21262d" stroke="#30363d" stroke-width="2" />
+    <rect x="-30" y="55" width="70" height="25" rx="4" fill="#0d1117" />
+    <text x="5" y="72" font-family="monospace" font-size="9" fill="#7ee787">&gt; agentctl me</text>
+    <!-- Yuki Body -->
+    <rect x="-20" y="10" width="40" height="45" rx="10" fill="#2e7d32" />
+    <!-- Yuki Head -->
+    <circle cx="0" cy="-16" r="28" fill="#e0def4" />
+    <!-- Purple short hair -->
+    <path d="M-28 -20 C-28 -44 28 -44 28 -20 C28 -10 24 5 24 5 C20 -5 18 -15 16 -18 C10 -15 -10 -15 -16 -18 C-18 -15 -20 -5 -24 5 C-24 5 -28 -10 -28 -20 Z" fill="#4c3d69" />
+    <!-- Glasses -->
+    <rect x="-18" y="-22" width="14" height="10" rx="3" fill="none" stroke="#21262d" stroke-width="2" />
+    <rect x="4" y="-22" width="14" height="10" rx="3" fill="none" stroke="#21262d" stroke-width="2" />
+    <line x1="-4" y1="-17" x2="4" y2="-17" stroke="#21262d" stroke-width="2" />
+    <!-- Eyes behind glasses -->
+    <circle cx="-11" cy="-17" r="2.5" fill="#21262d" />
+    <circle cx="11" cy="-17" r="2.5" fill="#21262d" />
+    <!-- Gentle Smile -->
+    <path d="M-5 -6 Q0 -2 5 -6" fill="none" stroke="#21262d" stroke-width="2" stroke-linecap="round" />
+    <!-- Holding Badge Hand -->
+    <circle cx="28" cy="20" r="7" fill="#e0def4" />
+    <!-- Glowing Badge being handed over -->
+    <g transform="translate(42, 10)">
+      <rect x="-8" y="-12" width="22" height="30" rx="4" fill="url(#badgeGrad)" stroke="#7ee787" stroke-width="1.5" />
+      <circle cx="3" cy="-7" r="2" fill="#ffffff" />
+      <rect x="-4" y="-2" width="14" height="4" rx="1" fill="#ffffff" />
+      <rect x="-4" y="5" width="10" height="2" rx="1" fill="#ffffff" opacity="0.8" />
+      <rect x="-4" y="9" width="12" height="2" rx="1" fill="#ffffff" opacity="0.8" />
+    </g>
+  </g>
+  <!-- Yuki Speech Bubble -->
+  <g transform="translate(130, 95)" filter="url(#shadow2)">
+    <rect x="-85" y="-30" width="170" height="50" rx="10" fill="url(#bubbleGrad2)" stroke="#7ee787" stroke-width="1.5" />
+    <polygon points="-10,20 10,20 0,32" fill="#161b22" />
+    <polygon points="-10,20 0,32 1,20" fill="#161b22" stroke="#7ee787" stroke-width="1.5" />
+    <line x1="-9" y1="20" x2="9" y2="20" stroke="#161b22" stroke-width="2" />
+    <text x="0" y="-10" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12" font-weight="bold" fill="#7ee787" text-anchor="middle">会话启动先认领！</text>
+    <text x="0" y="8" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="10" fill="#8b949e" text-anchor="middle">自动匹配 ID，绝不抢占冒领</text>
+  </g>
+
+  <!-- Antigravity receiving badge -->
+  <g transform="translate(280, 230)" filter="url(#shadow2)">
+    <!-- Floating rings -->
+    <ellipse cx="0" cy="50" rx="18" ry="5" fill="none" stroke="#79c0ff" stroke-width="2" stroke-dasharray="3 3" />
+    <!-- Antigravity Body -->
+    <rect x="-20" y="10" width="40" height="40" rx="10" fill="#1f6feb" />
+    <!-- Big Glowing Badge on Chest -->
+    <rect x="-12" y="18" width="24" height="16" rx="3" fill="#0d1117" stroke="#79c0ff" stroke-width="1.5" />
+    <text x="0" y="29" font-family="monospace" font-size="7" fill="#79c0ff" font-weight="bold" text-anchor="middle">AGY:me</text>
+    <!-- Antigravity Head -->
+    <circle cx="0" cy="-18" r="28" fill="#58a6ff" />
+    <!-- Visor -->
+    <rect x="-22" y="-24" width="44" height="15" rx="7" fill="#0d1117" stroke="#7ee787" stroke-width="2" />
+    <text x="0" y="-14" font-family="monospace" font-size="8" fill="#7ee787" font-weight="bold" text-anchor="middle">VERIFIED</text>
+    <!-- Happy Eyes / Expression -->
+    <path d="M-5 -2 Q0 3 5 -2" fill="none" stroke="#0d1117" stroke-width="2.5" stroke-linecap="round" />
+    <!-- Sparkles -->
+    <text x="30" y="-30" font-family="sans-serif" font-size="18" fill="#e3b341">✨</text>
+    <!-- Happy Hand wave -->
+    <circle cx="-26" cy="18" r="7" fill="#58a6ff" />
+    <circle cx="26" cy="12" r="7" fill="#58a6ff" />
+  </g>
+  <!-- Antigravity Speech Bubble -->
+  <g transform="translate(290, 115)" filter="url(#shadow2)">
+    <rect x="-85" y="-25" width="170" height="45" rx="10" fill="url(#bubbleGrad2)" stroke="#79c0ff" stroke-width="1.5" />
+    <polygon points="-10,20 10,20 0,30" fill="#161b22" />
+    <polygon points="-10,20 0,30 1,20" fill="#161b22" stroke="#79c0ff" stroke-width="1.5" />
+    <line x1="-9" y1="20" x2="9" y2="20" stroke="#161b22" stroke-width="2" />
+    <text x="0" y="-6" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12" font-weight="bold" fill="#79c0ff" text-anchor="middle">拿到专属工牌啦！</text>
+    <text x="0" y="10" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="10" fill="#8b949e" text-anchor="middle">我是 Antigravity，专属环境已锁</text>
+  </g>
+
+  <!-- ================= RIGHT HALF: SHARED TASK BOARD (agentctl todo) ================= -->
+  <!-- Holographic Board Background -->
+  <g transform="translate(580, 240)" filter="url(#shadow2)">
+    <rect x="-170" y="-140" width="340" height="230" rx="12" fill="#161b22" stroke="#58a6ff" stroke-width="2" />
+    <!-- Board Header -->
+    <rect x="-170" y="-140" width="340" height="32" rx="12" fill="#1f6feb" opacity="0.3" />
+    <text x="0" y="-119" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="13" font-weight="bold" fill="#79c0ff" text-anchor="middle">团队共享任务板 · agentctl todo</text>
+
+    <!-- Column 1: TODO -->
+    <g transform="translate(-110, -90)">
+      <rect x="-48" y="0" width="96" height="155" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1" />
+      <text x="0" y="16" font-family="monospace" font-size="10" fill="#8b949e" font-weight="bold" text-anchor="middle">TODO (待办)</text>
+      <!-- Task card -->
+      <rect x="-42" y="26" width="84" height="32" rx="4" fill="#21262d" stroke="#30363d" />
+      <text x="-36" y="42" font-family="sans-serif" font-size="9" fill="#c9d1d9">数据校验 04</text>
+      <circle cx="32" cy="42" r="4" fill="#8b949e" />
+    </g>
+
+    <!-- Column 2: DOING -->
+    <g transform="translate(0, -90)">
+      <rect x="-48" y="0" width="96" height="155" rx="6" fill="#0d1117" stroke="#58a6ff" stroke-width="1.5" />
+      <text x="0" y="16" font-family="monospace" font-size="10" fill="#79c0ff" font-weight="bold" text-anchor="middle">DOING (进行)</text>
+      <!-- Active Task card 1 -->
+      <rect x="-42" y="26" width="84" height="42" rx="4" fill="#1f6feb22" stroke="#388bfd" stroke-width="1.5" />
+      <text x="-36" y="42" font-family="sans-serif" font-size="9" font-weight="bold" fill="#79c0ff">重构架构文档</text>
+      <rect x="-36" y="50" width="46" height="12" rx="2" fill="#1f6feb" />
+      <text x="-13" y="59" font-family="monospace" font-size="7" fill="#ffffff" text-anchor="middle">Antigravity</text>
+      <!-- Active Task card 2 -->
+      <rect x="-42" y="74" width="84" height="42" rx="4" fill="#d2992222" stroke="#d29922" stroke-width="1.5" />
+      <text x="-36" y="90" font-family="sans-serif" font-size="9" font-weight="bold" fill="#ffa657">反编译分析</text>
+      <rect x="-36" y="98" width="40" height="12" rx="2" fill="#d29922" />
+      <text x="-16" y="107" font-family="monospace" font-size="7" fill="#ffffff" text-anchor="middle">02_static</text>
+    </g>
+
+    <!-- Column 3: DONE -->
+    <g transform="translate(110, -90)">
+      <rect x="-48" y="0" width="96" height="155" rx="6" fill="#0d1117" stroke="#238636" stroke-width="1" />
+      <text x="0" y="16" font-family="monospace" font-size="10" fill="#7ee787" font-weight="bold" text-anchor="middle">DONE (已归档)</text>
+      <!-- Done Task card -->
+      <rect x="-42" y="26" width="84" height="32" rx="4" fill="#23863622" stroke="#238636" />
+      <text x="-36" y="42" font-family="sans-serif" font-size="9" fill="#7ee787">✓ 框架初始化</text>
+      <rect x="-42" y="64" width="84" height="32" rx="4" fill="#23863622" stroke="#238636" />
+      <text x="-36" y="80" font-family="sans-serif" font-size="9" fill="#7ee787">✓ 镜像同步检核</text>
+    </g>
+
+    <!-- Little Worker Agent holding a task piece -->
+    <g transform="translate(-130, 90)">
+      <circle cx="0" cy="-14" r="14" fill="#f0883e" />
+      <rect x="-10" y="0" width="20" height="22" rx="5" fill="#d9572b" />
+      <circle cx="-14" cy="8" r="4" fill="#f0883e" />
+      <circle cx="14" cy="8" r="4" fill="#f0883e" />
+      <!-- Tiny speech bubble -->
+      <rect x="18" y="-28" width="80" height="24" rx="5" fill="#21262d" stroke="#f0883e" />
+      <text x="58" y="-12" font-family="sans-serif" font-size="9" fill="#f0883e" text-anchor="middle">谁做完交接我！</text>
+    </g>
+  </g>
+
+  <!-- Bottom Summary Card -->
+  <rect x="40" y="415" width="720" height="50" rx="10" fill="#161b22" stroke="#30363d" />
+  <circle cx="65" cy="440" r="14" fill="#238636" opacity="0.2" />
+  <text x="65" y="445" font-family="sans-serif" font-size="16" fill="#7ee787" font-weight="bold" text-anchor="middle">✓</text>
+  <text x="95" y="438" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="13" font-weight="bold" fill="#f0f6fc">协同机制：工牌确权 + 看板流转</text>
+  <text x="95" y="454" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11" fill="#8b949e">agentctl me 根据客户端现场判定身份，未命中绝不猜认；todo 板支持认领、流转与私人清单，多端步调一致。</text>
+</svg>

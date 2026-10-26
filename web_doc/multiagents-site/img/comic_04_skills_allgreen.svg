@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2ea043" />
+      <stop offset="100%" stop-color="#238636" />
+    </linearGradient>
+    <linearGradient id="pedestalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#21262d" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="bubbleGrad4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#21262d" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <filter id="shadow4" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad4)" />
+  <rect x="20" y="20" width="760" height="460" rx="16" fill="none" stroke="#30363d" stroke-width="2" />
+
+  <!-- Top Title Banner -->
+  <rect x="35" y="32" width="105" height="26" rx="6" fill="#8957e5" />
+  <text x="87" y="50" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">EPISODE 04</text>
+  <text x="155" y="52" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="18" font-weight="bold" fill="#f0f6fc">技能全镜像与全绿通关</text>
+
+  <!-- ================= TOP: SKILL MIRROR DISTRIBUTION ================= -->
+  <!-- Master Source of Truth in Center -->
+  <g transform="translate(400, 110)" filter="url(#shadow4)">
+    <rect x="-90" y="-30" width="180" height="55" rx="10" fill="#21262d" stroke="#d2a8ff" stroke-width="2" />
+    <text x="0" y="-8" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="12" font-weight="bold" fill="#d2a8ff" text-anchor="middle">skills/ 技能单一事实源</text>
+    <text x="0" y="12" font-family="monospace" font-size="9" fill="#8b949e" text-anchor="middle">7 CLI-Neutral Skills</text>
+  </g>
+
+  <!-- Projection Beams to 3 Clients -->
+  <path d="M350 140 L160 210" stroke="#79c0ff" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+  <path d="M400 140 L400 210" stroke="#7ee787" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+  <path d="M450 140 L640 210" stroke="#ffa657" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+
+  <!-- Sync verification badge in center -->
+  <g transform="translate(400, 165)">
+    <rect x="-65" y="-12" width="130" height="24" rx="12" fill="#0d1117" stroke="#7ee787" stroke-width="1.5" />
+    <text x="0" y="4" font-family="monospace" font-size="8" fill="#7ee787" font-weight="bold" text-anchor="middle">sync_skills --check 0 漂移</text>
+  </g>
+
+  <!-- 3 Client Pedestals -->
+  <!-- Client 1: .agents (Antigravity) -->
+  <g transform="translate(160, 235)" filter="url(#shadow4)">
+    <rect x="-60" y="-20" width="120" height="50" rx="8" fill="url(#pedestalGrad)" stroke="#79c0ff" stroke-width="1.5" />
+    <text x="0" y="-2" font-family="monospace" font-size="11" font-weight="bold" fill="#79c0ff" text-anchor="middle">.agents/skills</text>
+    <text x="0" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Antigravity 镜像</text>
+    <circle cx="45" cy="-8" r="5" fill="#238636" />
+    <text x="45" y="-5" font-family="sans-serif" font-size="7" fill="#fff" text-anchor="middle">✓</text>
+  </g>
+
+  <!-- Client 2: .opencode (OpenCode) -->
+  <g transform="translate(400, 235)" filter="url(#shadow4)">
+    <rect x="-60" y="-20" width="120" height="50" rx="8" fill="url(#pedestalGrad)" stroke="#7ee787" stroke-width="1.5" />
+    <text x="0" y="-2" font-family="monospace" font-size="11" font-weight="bold" fill="#7ee787" text-anchor="middle">.opencode/skills</text>
+    <text x="0" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">OpenCode 镜像</text>
+    <circle cx="45" cy="-8" r="5" fill="#238636" />
+    <text x="45" y="-5" font-family="sans-serif" font-size="7" fill="#fff" text-anchor="middle">✓</text>
+  </g>
+
+  <!-- Client 3: .claude (Claude Code) -->
+  <g transform="translate(640, 235)" filter="url(#shadow4)">
+    <rect x="-60" y="-20" width="120" height="50" rx="8" fill="url(#pedestalGrad)" stroke="#ffa657" stroke-width="1.5" />
+    <text x="0" y="-2" font-family="monospace" font-size="11" font-weight="bold" fill="#ffa657" text-anchor="middle">.claude/skills</text>
+    <text x="0" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="9" fill="#8b949e" text-anchor="middle">Claude Code 镜像</text>
+    <circle cx="45" cy="-8" r="5" fill="#238636" />
+    <text x="45" y="-5" font-family="sans-serif" font-size="7" fill="#fff" text-anchor="middle">✓</text>
+  </g>
+
+  <!-- ================= FOREGROUND: CELEBRATION & 22/22 ALL GREEN ================= -->
+  <!-- Celebration Trophy Badge -->
+  <g transform="translate(400, 345)" filter="url(#shadow4)">
+    <circle cx="0" cy="0" r="42" fill="url(#glowGrad)" stroke="#fff" stroke-width="2" />
+    <text x="0" y="-8" font-family="monospace" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">22/22</text>
+    <text x="0" y="8" font-family="sans-serif" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">TESTS PASSED</text>
+    <text x="0" y="24" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="9" fill="#ffffff" opacity="0.9" text-anchor="middle">只读自检全绿</text>
+    <!-- Laurel Wreath Leaves / Sparkles -->
+    <text x="-52" y="-15" font-family="sans-serif" font-size="16" fill="#e3b341">✨</text>
+    <text x="42" y="-15" font-family="sans-serif" font-size="16" fill="#e3b341">✨</text>
+  </g>
+
+  <!-- Antigravity Celebrating (Floating High on Left) -->
+  <g transform="translate(230, 335)" filter="url(#shadow4)">
+    <!-- Floating Jet Stream -->
+    <polygon points="-6,38 0,55 6,38" fill="#58a6ff" opacity="0.8" />
+    <polygon points="-3,38 0,48 3,38" fill="#ffffff" />
+    <!-- Antigravity Body -->
+    <rect x="-16" y="6" width="32" height="32" rx="8" fill="#1f6feb" />
+    <circle cx="0" cy="-14" r="22" fill="#58a6ff" />
+    <!-- Visor happy eyes (Arc) -->
+    <rect x="-18" y="-18" width="36" height="12" rx="6" fill="#0d1117" stroke="#7ee787" stroke-width="1.5" />
+    <text x="0" y="-9" font-family="monospace" font-size="7" fill="#7ee787" font-weight="bold" text-anchor="middle">AGY:WIN</text>
+    <!-- Raised hands (Double Thumbs Up) -->
+    <circle cx="-22" cy="-6" r="6" fill="#58a6ff" />
+    <text x="-25" y="-12" font-family="sans-serif" font-size="12">👍</text>
+    <circle cx="22" cy="-6" r="6" fill="#58a6ff" />
+    <text x="18" y="-12" font-family="sans-serif" font-size="12">👍</text>
+  </g>
+  <!-- Antigravity Speech Bubble -->
+  <g transform="translate(180, 290)" filter="url(#shadow4)">
+    <rect x="-55" y="-18" width="110" height="30" rx="8" fill="url(#bubbleGrad4)" stroke="#79c0ff" stroke-width="1.5" />
+    <text x="0" y="2" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="10" font-weight="bold" fill="#79c0ff" text-anchor="middle">协同全通关！</text>
+  </g>
+
+  <!-- Yuki Celebrating (Right of trophy) -->
+  <g transform="translate(570, 345)" filter="url(#shadow4)">
+    <!-- Yuki Body -->
+    <rect x="-16" y="8" width="32" height="35" rx="8" fill="#2e7d32" />
+    <circle cx="0" cy="-14" r="22" fill="#e0def4" />
+    <!-- Hair -->
+    <path d="M-22 -16 C-22 -36 22 -36 22 -16 C22 -8 18 4 18 4 C14 -4 14 -12 12 -14 C8 -12 -8 -12 -12 -14 C-14 -12 -14 -4 -18 4 C-18 4 -22 -8 -22 -16 Z" fill="#4c3d69" />
+    <!-- Glasses -->
+    <rect x="-14" y="-18" width="10" height="8" rx="2" fill="none" stroke="#21262d" stroke-width="1.5" />
+    <rect x="4" y="-18" width="10" height="8" rx="2" fill="none" stroke="#21262d" stroke-width="1.5" />
+    <!-- Happy eyes -->
+    <path d="M-11 -14 Q-9 -17 -7 -14" fill="none" stroke="#21262d" stroke-width="1.5" />
+    <path d="M7 -14 Q9 -17 11 -14" fill="none" stroke="#21262d" stroke-width="1.5" />
+    <!-- Smile -->
+    <path d="M-4 -4 Q0 -1 4 -4" fill="none" stroke="#21262d" stroke-width="1.5" />
+    <!-- Hands holding checklist -->
+    <circle cx="-20" cy="16" r="5" fill="#e0def4" />
+    <circle cx="20" cy="16" r="5" fill="#e0def4" />
+    <rect x="-12" y="12" width="24" height="28" rx="2" fill="#ffffff" stroke="#30363d" />
+    <text x="0" y="24" font-family="sans-serif" font-size="7" fill="#238636" font-weight="bold" text-anchor="middle">✓ ALL OK</text>
+  </g>
+  <!-- Yuki Speech Bubble -->
+  <g transform="translate(620, 300)" filter="url(#shadow4)">
+    <rect x="-55" y="-18" width="110" height="30" rx="8" fill="url(#bubbleGrad4)" stroke="#7ee787" stroke-width="1.5" />
+    <text x="0" y="2" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="10" font-weight="bold" fill="#7ee787" text-anchor="middle">收尾自检全通过～</text>
+  </g>
+
+  <!-- Bottom Summary Card -->
+  <rect x="40" y="415" width="720" height="50" rx="10" fill="#161b22" stroke="#30363d" />
+  <circle cx="65" cy="440" r="14" fill="#8957e5" opacity="0.2" />
+  <text x="65" y="445" font-family="sans-serif" font-size="16" fill="#d2a8ff" font-weight="bold" text-anchor="middle">✓</text>
+  <text x="95" y="438" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="13" font-weight="bold" fill="#f0f6fc">闭环体系：单一技能源镜像 + 全绿测试自检</text>
+  <text x="95" y="454" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11" fill="#8b949e">skills/ 一处维护、自动分发多客户端；.tests 套件覆盖所有核心不变量，改完框架一键回归，稳健交付！</text>
+</svg>
