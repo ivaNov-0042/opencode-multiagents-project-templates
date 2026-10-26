@@ -42,13 +42,21 @@ def stamp(text: str, sid: str) -> str:
     return "\n".join(lines[: end + 1] + ["", MARK.format(sid=sid)] + lines[end + 1:])
 
 
+IGNORE_DIRS = {"__pycache__", ".git"}
+IGNORE_EXTS = {".pyc", ".pyo"}
+
+
+def is_ignored(p: Path) -> bool:
+    return any(part in IGNORE_DIRS for part in p.parts) or p.suffix in IGNORE_EXTS
+
+
 def wanted() -> dict[Path, str]:
     """源 → 相对路径 → 期望内容（文本文件已盖生成物戳）。"""
     out: dict[Path, str] = {}
     if not SRC.is_dir():
         sys.exit(i18n.t("源目录不存在：{SRC}", SRC=SRC))
-    for skill in sorted(p for p in SRC.iterdir() if p.is_dir()):
-        for f in sorted(p for p in skill.rglob("*") if p.is_file()):
+    for skill in sorted(p for p in SRC.iterdir() if p.is_dir() and not is_ignored(p)):
+        for f in sorted(p for p in skill.rglob("*") if p.is_file() and not is_ignored(p)):
             rel = f.relative_to(SRC)
             text = f.read_text(encoding="utf-8", errors="replace")
             out[rel] = stamp(text, skill.name) if f.name == "SKILL.md" else text
@@ -66,7 +74,11 @@ def mirror(target: Path, files: dict[Path, str], check: bool, dry: bool) -> list
         if not (check or dry):
             dst.parent.mkdir(parents=True, exist_ok=True)
             dst.write_text(text, encoding="utf-8")
-    have = {p.relative_to(target) for p in target.rglob("*") if p.is_file()} if target.is_dir() else set()
+    have = (
+        {p.relative_to(target) for p in target.rglob("*") if p.is_file() and not is_ignored(p)}
+        if target.is_dir()
+        else set()
+    )
     for stale in sorted(have - set(files)):
         msgs.append(f"{'多余' if check else '删除'} {target.name}/{stale}")
         if not (check or dry):

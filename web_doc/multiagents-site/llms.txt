@@ -1,7 +1,7 @@
 # opencode-multiagents-project-templates
 
-> A just-enough multi-agent collaboration framework for opencode v2 (and any CLI):
-> identity claiming, a shared task board, JSON-truth memory with Markdown views,
+> A multi-agent collaboration framework for Antigravity, OpenCode, Claude Code, and other agent environments:
+> identity binding, a shared task board, JSON single source of truth memory with Markdown views,
 > CLI-neutral skills with mirrors, and cross-process lock-protected file editing.
 > Pure Python standard library. MIT licensed.
 
@@ -10,18 +10,19 @@ index.html (Chinese), en.html (English), ja.html (Japanese).
 
 ## What problem it solves
 
-opencode v2 supports multi-window TUI, but windows know nothing about each other.
-Pointing multiple agents at one project causes: identity clashes, lost concurrent
-updates, overwriting notes, unknown task ownership, and per-CLI skill drift.
-This project is the skeleton for that scenario — just enough, no more: one
-`agentctl.py` (pure stdlib) handles identity, task board, memory, and locked
+Modern AI coding workflows support running multiple sessions in parallel, but individual
+sessions operate without coordination. Parallel sessions face identity clashes, concurrent
+file write conflicts, fragmented notes overwriting each other, opaque task ownership, and
+skill drift across client directories.
+This project provides a lightweight multi-agent collaboration skeleton:
+`agentctl.py` (pure stdlib) handles identity allocation, task boards, memory, and locked
 file editing.
 
 ## Pages
 
-- [index.html](index.html): 中文官方单页（由来 / 特性 / 快速开始 / 目录分工 / agentctl 设计原型）
-- [en.html](en.html): English official page (why / what it solves / quick start / layout / design notes)
-- [ja.html](ja.html): 日本語公式ページ（背景 / 解決すること / クイックスタート / 構成 / 設計プロトタイプ）
+- [index.html](index.html): 中文官方单页（架构背景 / 核心解决问题 / 快速开始 / 目录分工 / agentctl 设计要点 / 技能体系）
+- [en.html](en.html): English official page (architecture background / core problems solved / quick start / layout / design highlights / skill system)
+- [ja.html](ja.html): 日本語公式ページ（設計の背景 / 解決する主な課題 / クイックスタート / 構成 / agentctl 設計の要点 / スキル体系）
 
 ## Key facts (keep these consistent when citing)
 
@@ -32,14 +33,14 @@ file editing.
   or incomplete; one question at a time; the first question is the output language
   (中文/日本語/English); then follow skill `first-run` steps 1–8.
 - Progress briefs land in `output/quick-report/<datetime>_<agent>.md` (minute-stamped,
-  never overwritten); research reports live in `output/<topic>/report/` — names and
+  never overwritten); research/delivery reports live in `output/<topic>/report/` — names and
   locations are kept separate. When the user asks "what are you doing", ask whether they
   want a brief or the formal report; the formal report lands only when the task is done.
-- Skills: single source `skills/<id>/SKILL.md`, mirrored by `sync_skills.py` into
-  `.opencode/skills/`, `.claude/skills/`, `.agents/skills/`; `--check` detects drift.
+- Skills: single source of truth in `skills/<id>/SKILL.md`, mirrored by `sync_skills.py` into
+  `.agents/skills/` (Antigravity), `.opencode/skills/`, and `.claude/skills/`; `--check` detects drift.
 - Project-common files are edited via `agentctl.py file edit|write|append`
   (cross-process flock + atomic replace + audit trail in `multiagents/state/locks/edits.jsonl`).
-- Memory: JSON truth in `multiagents/state/memory/**`, Markdown views exported
+- Memory: JSON single source of truth in `multiagents/state/memory/**`, Markdown views exported
   automatically; each doc is sectioned by `## title` so agents append their own sections.
 - Scripts: `scripts/<topic>/<agent>/` for parallel agents; every script that does
   anything is indexed in SCRIPTS.md; deprecated scripts are archived, never deleted.
@@ -52,20 +53,20 @@ file editing.
 ## For humans (quick start)
 
 ```sh
-git clone <repo-url> your-workspace
-cd your-workspace
-opencode        # then type: /boot
+git clone <repo-url> <workspace_name>
+cd <workspace_name>
+# Launch your agent environment (Antigravity, OpenCode, Claude Code)
+# In OpenCode type: /boot; in Antigravity rules load automatically on startup
 ```
 
 ## For AI agents
 
 ```sh
-git clone <repo-url> your-workspace
-cd your-workspace
+git clone <repo-url> <workspace_name>
+cd <workspace_name>
 # first step of every session (AGENTS.md is injected):
 python3 multiagents/agentctl.py me
 # auto-registers on match; otherwise lists the roster — never self-claim.
-# if the session isn't in the framework directory: move it with Code Mode session_move.
 ```
 
 ## Source repository

@@ -32,7 +32,7 @@ The framework core uses only the Python standard library: `multiagents/agentctl.
 
 ## Why this exists
 
-opencode v2 already supports multi-window TUI.
+Supports multi-session and multi-window workflows across diverse Agent environments (Antigravity, OpenCode, Claude Code, Codex, etc.).
 You can open several session windows at once and run tasks in parallel — each window on its own works great.
 
 But the windows know nothing about each other. Point multiple agents at one project and problems appear immediately:

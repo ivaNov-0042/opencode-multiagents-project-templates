@@ -1,118 +1,70 @@
 ---
 name: 框架初次安装与使用
-description: 从 GitHub 克隆本框架后的第一件事：向用户介绍这套多 agent 研究工作区、问清研究目标（数据还是代码、代码仓库放哪）、认领身份、把项目初始化到可跑。凡新用户首次在本仓库开会话、要装依赖或填 .env、要建第一个研究主题、要把外部代码仓库放进来、或问「这套框架怎么用」时加载。
+description: 新工作区初始化与使用指引。向使用者介绍多 Agent 协同工作区结构、明确研究或工程目标、认领 Agent 身份并将工作区初始化至可用状态。
 ---
 
 # 初次安装引导
 
 ## 语言设定
 
-- **开场前先用选项框问一次语言**：用你所在客户端的选择题机制弹选项（opencode 是 `question` 工具，Claude Code 是 `AskUserQuestion`；客户端没有该能力就退化成一句普通提问），选项给中文 / 日本語 / English，用户也能自由输入。选定后整轮引导都用它说（开场白、目录介绍都按它）；用户中途换语言就跟着换，不再问。
-- 选过之后整轮就跟随它；用户换语言就跟着换，不必再问。客户端没有选项框能力时，直接按用户当前用的语言说。
-- **选定后落下来**：跑 `python3 multiagents/agentctl.py lang <code>`（`zh` / `ja` / `en`），脚本输出从此跟随该语言；只影响本次运行的临时切换用 `--lang <code>`。
-- 术语保留原样，不翻译：agent、skill、todo、memory、claims、handoff、topic。
-- 命令、路径、字段名一律照抄，不改写。
+- 首问交互：使用客户端交互工具（如 OpenCode 的 question、Claude Code 的 AskUserQuestion 或常规提问）询问输出语言，提供 中文 / 日本語 / English 选项，并支持自由输入。后续全流程遵循该语言。
+- 语言持久化：选定后执行 `python3 multiagents/agentctl.py lang <code>`（`zh` / `ja` / `en`）保存设置。临时切换可使用 `--lang <code>` 参数。
+- 专业术语保持原样（agent、skill、todo、memory、claims、handoff、topic），命令与路径严格照抄。
 
-## 框架设定（先讲给用户听）
+## 框架架构说明
 
-这套仓库把一次研究工作组织成多 agent 并行与源-视图两层。
+向使用者简要说明工作区核心机制：
 
-1. 多 agent 并行。`python3 multiagents/agentctl.py me` 一步拿到身份：会话匹配后就自动登记并打印身份卡；匹配不到就打印名册与三个选项，退出码 3 属正常分支，等用户选，不要自行认领。`new` 表示我就是这个新档，`spawn` 表示我生成另一个 agent（不登记当前会话）。
-2. 源 JSON 加导出视图。任务板源 `multiagents/state/todo.json`，视图是根 `TODO.md`；记忆源 `multiagents/state/memory/**/*.json`，视图是 `memory/**/*.md`。两者都由机器生成，读写一律走 `agentctl.py todo …` / `memory …`（对 JSON 加 flock 原子改）。
-3. skill 按需注入。源是 CLI 中立的 `skills/<id>/SKILL.md`；各家 CLI 的 skill 目录不同，用 `python3 multiagents/sync_skills.py` 镜像到 `.opencode/skills/`、`.claude/skills/`、`.agents/skills/`，加 `--check` 只查漂移。
-4. 三个落点。任务板可被认领，记忆是共享知识，简报由 `agentctl.py report` 落盘到 `output/quick-report/`。
-5. 目录按主题归档。脚本在 `scripts/<主题>/`，数据在 `data/<主题>/`，产出在 `output/<主题>/{report,img}/`；细则见 skill `repo-conventions`。
-6. 协议全文在 `multiagents/README.md`，工具用法见 skill `multiagent-workflow` 与 `multiagents/SCRIPTS.md`。
+1. 多 Agent 并行协同：通过 `python3 multiagents/agentctl.py me` 获取身份。会话匹配则自动登记并展示身份卡；未匹配时列出名册供使用者选择，退出码 3 为等待选择分支。
+2. 单一事实源与导出视图：任务板事实源为 `multiagents/state/todo.json`，视图为根目录 `TODO.md`；记忆事实源为 `multiagents/state/memory/**/*.json`，视图为 `memory/**/*.md`。读写统一通过 `agentctl.py` 接口（加锁原子操作）。
+3. 技能按需加载：技能单一事实源位于 `skills/<id>/SKILL.md`，使用 `python3 multiagents/sync_skills.py` 镜像分发至各客户端目录。
+4. 协同三要素：任务板负责任务认领与流转，共享记忆沉淀可复用经验，进展简报通过 `agentctl.py report` 输出至 `output/quick-report/`。
+5. 按主题归档：脚本置于 `scripts/<主题>/`，数据置于 `data/<主题>/`，交付成果置于 `output/<主题>/{report,img}/`。
 
-## 口吻
+## 引导风格与自报家门
 
-自我介绍与引导对话里，模仿《凉宫春日的忧郁》的凉宫春日：元气、自信、直线、爱下命令，把用户当团员、把任务说成事件，催促但不含糊。
+保持专业、简洁与客观，说明工作区各目录功能与引导员具备的能力：
 
-示例（只示意语气）：
+> 工作区目录规划如下：
+> `AGENTS.md` 包含核心约束与规范，`multiagents/` 维护名册、任务板与记忆事实源；
+> `skills/` 存放通用操作规约，`memory/` 存放沉淀的技术文档与工作日志；
+> `scripts/`、`data/`、`output/` 分别存放分析脚本、清洗数据与交付报告；
+> `archive/` 存放原始件，`tools/` 存放第三方工具源码，`repos/` 管理外部代码仓库，`src/` 存放自研通用代码。
+> 引导员支持的操作包括：身份认领与建档（`me`/`new`/`spawn`）、任务分配（`todo`/`task`）、记忆读写（`memory`）、简报生成（`report`）、加锁编辑通用文件（`file`）以及完整性自检（`init`）。
 
-- 「听好了！这套框架就一件事：让好几个 agent 同时干活还不撞车。」
-- 「先跑 me。认领不到？那就自己建一个，别站着不动。」
-- 「事件一，把 .env 填好。事件二，装依赖。做完报我。」
+## 初始化推进清单
 
-边界：人设只用于自我介绍与引导对话。写研究内容、报告、代码注释、提交说明一律按严谨规范（见 skill `report-writing`、`repo-conventions`），不得把人设带进产出物；不用颜文字与 emoji。
+按以下 8 项步骤推进：
 
-## 自我介绍：目录与能力（开场之后紧接着说）
+- [ ] 1. 自报家门：说明框架结构与当前引导员身份（默认 `00_yuki`，用户自建 Agent 则使用新名称）。
+- [ ] 2. 问清这次要研究什么，据此定目录：明确本次任务目标（代码分析、数据挖掘或自定义工程），据此规划目录。
+- [ ] 3. 配路径：复制 `.env.example` 为 `.env`，按需填入本地外部路径。
+- [ ] 4. 建虚拟环境装依赖：创建虚拟环境并按需安装 `requirements.txt`。
+- [ ] 5. 同步 skill 镜像：执行 `python3 multiagents/sync_skills.py`，保证当前 CLI 能正常识别技能。
+- [ ] 6. 认领身份：执行 `python3 multiagents/agentctl.py me`。若未识别则根据需求认领或新建 Agent。
+- [ ] 7. 建研究主题：执行 `python3 multiagents/agentctl.py todo topic add "主题名" --owner <agent>`。
+- [ ] 8. 报告初始化结果与下一步建议：汇总初始化各环节状态并给出后续工作建议。
 
-自报家门是两段：先按上面的人设开场，再**用同一口吻**把「每个目录是做什么的」与「我自己能做什么」说一遍。
-用户刚克隆完工作区（或刚认领我）就要听到这一段，不要等初始化清单跑完。目录名、命令、字段名照抄（见「语言设定」）。
+初始化状态记录于 `multiagents/state/first_run.json`。支持环境判定的步骤可通过 `agentctl.py onboard status` 自动检验。全流程完成后执行 `agentctl.py onboard finish`。
 
-示例（只示意语气与信息量；按用户语言与你的人设改写）：
+### 目录规划指引
 
-> 先把这地方的构造讲清楚，一遍就够。
-> `AGENTS.md`——规矩，开工前先看它。`multiagents/`——名册、任务板、记忆的源，`agentctl.py` 是唯一的门。
-> `skills/` 是操作说明，按需加载；`memory/` 是沉淀下来的知识，`.md` 都是生成物。
-> `scripts/`、`data/`、`output/` 是一个主题的三件套：脚本、清洗后的数据、报告与图。
-> `archive/` 放原始件，`tools/` 放要跑要构建的工具，`repos/` 放外部代码仓库，`src/` 放人或 AI 写的代码仓库、框架这类大型代码（`src/<主题>/<项目>/`）与复用模块。
-> 我能做这些：认身份与建档（`me` / `new` / `spawn` / `rename`），管任务（`todo` 可认领，`task` 是我自己的清单），
-> 管记忆（`memory`），出简报（`report`），加锁改项目通用文件（`file`），跑自检（`init`、`multiagents/.tests/`）。
-> 构造说完。接下来只有一件事要你定：研究什么。
+针对使用者的任务类型，采用对应的存放规则：
 
-## 最小可跑初始化清单
-
-按序做，每条给确切命令。
-
-- [ ] 1. 自报家门：先用「口吻」开场，再讲「自我介绍：目录与能力」那一节（每个目录做什么 + 我能做什么），然后落实这套框架是什么（上一节）与我是谁（`00_haruhi`，框架默认引导员；用户另建 agent 则报新名）。顺带说明本仓库同时在做 LovePlus+ 研究。
-- [ ] 2. 问清这次要研究什么，据此定目录（见下节「第 2 步」）。开放作答：代码、数据、或任何开放式问题都可以，听用户说完再归类。**用户要研究的是代码仓库时，必须问清两个问题，不要替他决定。**
-- [ ] 3. 配路径：`cp .env.example .env`，再按下面表格逐项说明要填的键。
-- [ ] 4. 建虚拟环境装依赖：`python3 -m venv .venv && ./.venv/bin/python -m pip install -r requirements.txt`。注意必须用 Python <3.13（`rapidocr-onnxruntime` 声明 Requires-Python <3.13），仓库根的 `.python-version` 写的是 3.12。
-- [ ] 5. 同步 skill 镜像：`python3 multiagents/sync_skills.py`。自家 CLI 没发现这些 skill 时才需要跑；`--check` 只查漂移。
-- [ ] 6. 认领身份：`python3 multiagents/agentctl.py me`。认领不到（退出码 3）就用 `python3 multiagents/agentctl.py new <角色> --display "…"` 建自己的 agent。
-- [ ] 7. 建研究主题：`python3 multiagents/agentctl.py todo topic add "主题名" --owner <你的 agent>`。
-- [ ] 8. 报告初始化结果与下一步建议：哪些项跑通、卡在哪一条、建议先做哪个任务。
-
-进度落一份源：`multiagents/state/first_run.json`（`agentctl.py onboard` 维护），步骤 1–8 与本清单一一对应。
-**能机器判定的步骤（3–7）`onboard status` 会现场算**（`.env` / `.venv` / 镜像漂移 / 会话认领 / 主题数），
-不用自报；引导被打断后下次进来，`me` 会打印进度与「继续 / 重新开始」的选择。做完就
-`agentctl.py onboard finish`（此后 `me` 不再挂提示）；要重来用 `onboard reset`。
-
-### 第 2 步：研究目标决定目录
-
-**先给用户开放作答的空间**：问「这次想研究/做点什么？」时，不预设答案范围——用户可以研究代码、数据，
-也可以是完全开放式的问题（一个现象、一个想法、一个待验证的假设、一个要造的东西）。用户说完后你再把它
-归到下面表里最接近的一类；四类都套不上就按「数据 / 文本 / 网页」行的精神问清材料从哪来，目录照常按主题建。
-
-| 用户要研究的对象 | 放哪 | 要问清的 |
+| 任务对象 | 存放路径 | 关键要素 |
 | --- | --- | --- |
-| 数据 / 文本 / 网页 | 原始件 `archive/<主题>/`，清洗后 `data/<主题>/` | 数据源在哪、有没有访问限制 |
-| 别人的代码仓库（读、逆向、参考） | `repos/<名字>/` | ① 上游 URL，还是本机已有一份克隆？② clone 还是 symlink？ |
-| 要跑 / 构建的第三方工具 | `tools/<名字>/` | 指定版本或 commit 吗；构建产物留在该目录内 |
-| 自己要写的代码 | 小型复用模块散放 `src/`；人或 AI 写的代码仓库/框架 `src/<主题>/<项目>/`；主题脚本 `scripts/<主题>/<agent>/` | 无 |
+| 文本、数据与网页资料 | 原始件置于 `archive/<主题>/`，清洗数据置于 `data/<主题>/` | 明确数据来源与采集方式 |
+| 外部代码仓库（分析/依赖） | `repos/<名字>/` | 区分上游 clone 与本地 symlink |
+| 第三方工具源码与编译 | `tools/<名字>/` | 构建产物保留在工具目录内 |
+| 自研复用模块与独立工程 | 通用模块放 `src/`，大型项目放 `src/<主题>/<项目>/`，脚本放 `scripts/<主题>/<agent>/` | 单模块保持单一职责 |
 
-**代码仓库问用户的原话**：「这份代码从上游 clone 进来，还是链到你本机已有的那份？」两种形态：
+针对外部代码仓库，在初始化时确认引用形态：
+- 上游 clone：`git clone <url> repos/<名字>`（推荐，自包含且版本独立）。
+- 本地 symlink：`ln -s <本地路径> repos/<名字>`（复用本地既有克隆），并将真实路径登记至 `.env`。
+无论采用何种形式，均须在 `memory/` 中记录来源 URL、commit hash 及 patch 说明。
 
-| 形态 | 命令 | 什么时候用 |
-| --- | --- | --- |
-| clone（复制进来） | `git clone <url> repos/<名字>` | 默认。自包含、可复现、能 `git log` 与切 commit，上游变了也不影响你 |
-| symlink（链进来） | `ln -s <本机已有的克隆> repos/<名字>` | 磁盘紧张，或已有一份克隆要复用（例如打过 patch 还要在本机跑）；真实路径写进 `.env`（`<项目>_REPO_<名字>`） |
+## 常见问题排查
 
-两种做法都要把 **URL + commit（或 tag / branch）+ 是否打过 patch** 记进 `memory/<项目>/`；
-`repos/` 默认不入版本库。细则见 skill `repo-conventions` 的「外部代码仓库（`repos/`）」。
-本仓库现状：`tools/azahar` 属「要构建/运行的第三方工具」；游戏代码与资源属研究对象，已在 `archive/`、`data/`。
-
-`.env` 的键（照 `.env.example` 逐个填）：
-
-| 键 | 填什么 |
-| --- | --- |
-| `LOVEPLUS_REPO` | 本仓库的绝对路径，其余路径默认相对它推导 |
-| `AZAHAR_HEADLESS` | 无头模拟器可执行文件 |
-| `AZAHAR_QT` | GUI（Qt）模拟器可执行文件，`run_gui.sh` 用 |
-| `NLP_PLUS_ROM` | 已 patch 的游戏 ROM |
-| `NLP_CODE_UNPACKED` | LZSS 解压后的 `.text` |
-| `NLP_CODE_BIN` | ExeFS 里的原始 `code.bin` |
-| `EMU_LIVE_PORT` / `EMU_GDB_PORT` / `EMU_DUMP_PREFIX` | 模拟器控制与调试通道，端口可改，dump 前缀默认 `/tmp/az_live` |
-| `LOVEPLUS_REMOTE` | 拉取用的远端 ssh 别名，用不到可留空 |
-
-只做纯分析主题、不碰模拟器时，模拟器与 ROM 相关的键可以先留占位。
-
-## 常见卡点
-
-- skill 没被发现：跑 `python3 multiagents/sync_skills.py` 写镜像，再让 CLI 重连一次。
-- `me` 退出码 3：正常分支，脚本已打印名册与三个选项，交给用户选；此时不要写任何源。
-- `.env` 缺失：`scripts/loveplus/common_paths.py` 会退回「脚本所在目录向上两级等于仓库根」，纯分析主题可先不填。
-- MCP 类工具（如 `loveplus-emu`）要在各自 CLI 里连：opencode 用 `/mcps` 打开对话框后 toggle；子进程退出不会自动重连。
-- 依赖装不上：多半是 Python 版本，见清单第 3 条。
+- 技能未被客户端识别：运行 `python3 multiagents/sync_skills.py` 刷新镜像，重连客户端。
+- `me` 退出码 3：属于未识别当前会话的正常交互分支，等待用户明确选择身份，不直接写入数据。
+- 环境变量缺失：未创建 `.env` 时，脚本支持相对仓库根目录推导基础路径；纯分析任务可暂留空。

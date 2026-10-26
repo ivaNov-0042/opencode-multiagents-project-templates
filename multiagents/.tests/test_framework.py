@@ -87,6 +87,16 @@ class Invariants(unittest.TestCase):
     """框架不变量：源 ↔ 视图一致、字段引用完整。"""
 
     def test_init_all_instances_present(self):
+        """`init` 的持久化引用必须全在。
+
+        ⚠️ `init` 还会检查 `claims.tmp` 目录与 `jobs[].log` —— 那是 **/tmp 上的运行时状态**，
+        每次重启/清理就没了，不是框架数据缺陷。所以这里**先跑 `--fix` 建出这两类临时物**，
+        再断言 `init` 干净；否则测试会在每次重启后假失败（历史上就是这样）。
+        `--fix` 只建缺失的 `/tmp/<agent>/` 与作业日志，不动任何源
+        （`test_card_writes_nothing` 另有源比对兜底）。
+        """
+        fix = ctl("init", "--fix")
+        self.assertEqual(fix.returncode, 0, fix.stdout + fix.stderr)
         p = ctl("init")
         self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
 

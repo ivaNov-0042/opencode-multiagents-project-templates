@@ -32,7 +32,7 @@ The framework core uses only the Python standard library: `multiagents/agentctl.
 
 ## 作った理由
 
-opencode v2 はすでにマルチウィンドウ TUI に対応しています。
+多様なエージェント環境（Antigravity、OpenCode、Claude Code、Codex など）でのマルチセッション・並列作業に対応しています。
 複数のセッションウィンドウを同時に開いて並列作業ができます——ウィンドウ単体の体験はとても良い。
 
 しかしウィンドウ同士は互いの存在を知りません。同じプロジェクトに複数エージェントを向けると問題がすぐ出ます：

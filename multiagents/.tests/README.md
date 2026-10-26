@@ -15,6 +15,12 @@ python3 -m unittest discover -s multiagents/.tests -t multiagents/.tests    # �
 - **只用标准库**（`unittest` / `subprocess`），不引入 pytest 等第三方依赖——`agentctl.py` 自身也不依赖第三方。
 - **测试只读**：不写板子、不写记忆、不改档案。要验证「某命令不改档」就用前后快照比对
   （`test_card_writes_nothing`），而不是靠人眼。
+- **`/tmp` 运行时状态不算源，要在测试里自行兜底**：`agentctl.py init` 除了检查源引用，
+  还会检查 `claims.tmp` 目录与 `jobs[].log`——它们在 `/tmp` 上，重启或清理后必然消失，
+  **不是框架数据缺陷**。所以断言 `init` 干净之前先跑 `init --fix` 把这两类临时物建出来
+  （`test_init_all_instances_present` 就是这么做的）。反过来，**不要**把 `/tmp` 状态
+  当不变量直接断言，否则测试会在每次重启后假失败。
+  `--fix` 只建缺失的 `/tmp/<agent>/` 与作业日志，不碰任何源 json。
 - **不写具体项目名**：agent 名、主题号、板子条目全部从 `multiagents/state/todo.json` 与
   `multiagents/*.json` 现取，因此同一份测试在任意克隆（含去项目专有的开源模板）里都能跑。
 - 断言要落在**机器可判**的量上（行数、退出码、源快照），不要只断言「输出里有某个词」。
