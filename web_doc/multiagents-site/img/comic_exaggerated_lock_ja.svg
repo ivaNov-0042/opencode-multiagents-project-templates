@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 640" width="100%" height="100%" style="font-family:'WenQuanYi Micro Hei', 'Noto Sans JP', 'Noto Sans SC', sans-serif;">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e14" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="vaultGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f2836" />
+      <stop offset="100%" stop-color="#111822" />
+    </linearGradient>
+    <linearGradient id="queueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#21262d" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="goldLock" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f2cc60" />
+      <stop offset="100%" stop-color="#d29922" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <rect width="920" height="640" fill="url(#bg2)" />
+  <rect x="15" y="15" width="890" height="610" rx="16" fill="none" stroke="#30363d" stroke-width="2" />
+
+  <!-- Main Title Banner -->
+  <g transform="translate(30, 28)">
+    <rect x="0" y="0" width="135" height="32" rx="6" fill="#d29922" />
+    <text x="67" y="21" font-size="13" font-weight="900" fill="#ffffff" text-anchor="middle">仕組みを徹底解剖</text>
+    <text x="150" y="24" font-size="20" font-weight="900" fill="#f0f6fc">仕組み2：プロセス間ファイルロック —— 順番待ちで競合ゼロ！</text>
+  </g>
+
+  <!-- ================= LEFT: THE LOCKED LUXURY SUITE ================= -->
+  <g transform="translate(30, 80)" filter="url(#shadow)">
+    <!-- Room Chamber -->
+    <rect x="0" y="0" width="380" height="470" rx="14" fill="url(#vaultGrad)" stroke="#f2cc60" stroke-width="2" />
+    <rect x="0" y="0" width="380" height="38" rx="14" fill="#d2992233" />
+    <circle cx="22" cy="19" r="6" fill="#7ee787" />
+    <text x="35" y="24" font-size="13" font-weight="900" fill="#f2cc60">施錠VIPルーム · アトミック書き込み中 (1/1 独占)</text>
+
+    <!-- Huge Golden Padlock at top right -->
+    <g transform="translate(315, 62)">
+      <path d="M-12 0 C-12 -20 12 -20 12 0" fill="none" stroke="#f2cc60" stroke-width="6" stroke-linecap="round" />
+      <rect x="-20" y="0" width="40" height="34" rx="6" fill="url(#goldLock)" stroke="#ffffff" stroke-width="1.5" />
+      <circle cx="0" cy="14" r="3.5" fill="#0d1117" />
+      <polygon points="-2.5,15 2.5,15 1.5,23 -1.5,23" fill="#0d1117" />
+      <text x="15" y="-2" font-size="12">✨</text>
+      <!-- Lock status text -->
+      <text x="0" y="46" font-size="8.5" font-weight="bold" fill="#f2cc60" text-anchor="middle">FLOCK ロック中</text>
+    </g>
+
+    <!-- Luxury Desk & Chair -->
+    <g transform="translate(190, 235)">
+      <!-- Giant Computer Screen On Desk -->
+      <rect x="-135" y="-140" width="220" height="115" rx="8" fill="#0d1117" stroke="#388bfd" stroke-width="2" />
+      <rect x="-135" y="-120" width="220" height="22" rx="8" fill="#1f6feb22" />
+      <text x="-125" y="-125" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" fill="#79c0ff">agentctl.py file write main.py</text>
+      <text x="-125" y="-104" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8.5" fill="#7ee787">&gt; flock(fd, LOCK_EX) ファイル排他ロック取得</text>
+      <text x="-125" y="-88" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8.5" fill="#7ee787">&gt; 一時ファイル .main.py.tmp.1024 に書き込み</text>
+      <text x="-125" y="-72" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8.5" fill="#7ee787">&gt; os.replace() アトミック置換完了！</text>
+      <text x="-125" y="-56" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8.5" fill="#7ee787">&gt; 監査ログ: edits.jsonl (消失ゼロ)</text>
+
+      <!-- Screen Stand -->
+      <rect x="-35" y="0" width="20" height="16" fill="#21262d" />
+      <rect x="-55" y="16" width="60" height="6" rx="2" fill="#30363d" />
+
+      <!-- Comfy Executive Chair -->
+      <rect x="-45" y="25" width="90" height="65" rx="14" fill="#8957e5" stroke="#d2a8ff" stroke-width="2" />
+      <!-- Desk Surface -->
+      <rect x="-150" y="15" width="300" height="70" rx="8" fill="#21262d" stroke="#30363d" stroke-width="2" />
+      <rect x="-145" y="19" width="290" height="6" rx="2" fill="#d29922" opacity="0.4" />
+
+      <!-- Agent 1 enjoying luxury -->
+      <g transform="translate(0, 15)">
+        <rect x="-18" y="-15" width="36" height="38" rx="8" fill="#d9572b" />
+        <circle cx="0" cy="-42" r="22" fill="#f0883e" />
+        <!-- Cool Sunglasses -->
+        <polygon points="-16,-46 -2,-46 -5,-38 -13,-38" fill="#0d1117" stroke="#f2cc60" stroke-width="1.2" />
+        <polygon points="2,-46 16,-46 13,-38 5,-38" fill="#0d1117" stroke="#f2cc60" stroke-width="1.2" />
+        <line x1="-2" y1="-44" x2="2" y2="-44" stroke="#f2cc60" stroke-width="2" />
+        <path d="M-5 -28 Q0 -22 5 -28" stroke="#0d1117" stroke-width="2.5" fill="none" />
+      </g>
+
+      <!-- Tropical Coconut Drink with Straw & Umbrella -->
+      <g transform="translate(90, 5)">
+        <circle cx="0" cy="0" r="14" fill="#5c1d00" stroke="#30363d" />
+        <ellipse cx="0" cy="-8" rx="10" ry="4" fill="#ffffff" />
+        <line x1="2" y1="-8" x2="10" y2="-25" stroke="#ff7b72" stroke-width="3" stroke-linecap="round" />
+        <polygon points="0,-18 16,-28 14,-15" fill="#f2cc60" />
+      </g>
+
+      <!-- Music Notes Floating Around -->
+      <text x="-80" y="-10" font-size="16" fill="#7ee787">♫</text>
+      <text x="-95" y="-35" font-size="20" fill="#79c0ff">♪</text>
+      <text x="65" y="-35" font-size="18" fill="#ffa657">♬</text>
+
+      <!-- Agent 1 Dialogue Bubble -->
+      <g transform="translate(0, 130)">
+        <rect x="-130" y="-16" width="260" height="46" rx="8" fill="#0d1117" stroke="#7ee787" stroke-width="1.8" />
+        <text x="0" y="4" font-size="11" font-weight="bold" fill="#7ee787" text-anchor="middle">「アトミック置換は超快適！外は大行列だけど、」</text>
+        <text x="0" y="22" font-size="11" font-weight="bold" fill="#f0f6fc" text-anchor="middle">「中は完全独占！並行アクセスの邪魔ゼロ！」</text>
+      </g>
+    </g>
+
+    <!-- Bottom Badge -->
+    <rect x="20" y="420" width="340" height="34" rx="6" fill="#23863622" stroke="#238636" />
+    <text x="190" y="441" font-size="11" fill="#7ee787" font-weight="bold" text-anchor="middle">排他ロック中：一時ファイル置換で衝突を完全防止</text>
+  </g>
+
+  <!-- ================= RIGHT: THE EPIC WAITING QUEUE ================= -->
+  <g transform="translate(430, 80)" filter="url(#shadow)">
+    <!-- Queue Area Frame -->
+    <rect x="0" y="0" width="460" height="470" rx="14" fill="url(#queueGrad)" stroke="#f85149" stroke-width="2" />
+    <rect x="0" y="0" width="460" height="38" rx="14" fill="#f8514922" />
+    <circle cx="22" cy="19" r="6" fill="#f85149" />
+    <text x="35" y="24" font-size="13" font-weight="900" fill="#ff7b72">外の待合エリア · プロセス間 flock の行列</text>
+
+    <!-- LED Calling Display -->
+    <rect x="25" y="50" width="410" height="44" rx="6" fill="#0d1117" stroke="#f85149" stroke-width="1.5" />
+    <text x="40" y="77" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="900" fill="#ff7b72">発券機: 現在対応 #001</text>
+    <text x="225" y="77" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="bold" fill="#f2cc60">| 待機中: 99+ 名</text>
+    <text x="350" y="77" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="10.5" fill="#7ee787">平均: 15ms</text>
+
+    <!-- Security Officer Yuki Guarding Entrance -->
+    <g transform="translate(60, 165)">
+      <!-- Riot Shield -->
+      <rect x="-24" y="-30" width="48" height="75" rx="6" fill="#21262d" stroke="#58a6ff" stroke-width="2" />
+      <text x="0" y="10" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" font-weight="bold" fill="#79c0ff" text-anchor="middle">agentctl</text>
+      <text x="0" y="25" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8" fill="#7ee787" text-anchor="middle">LOCK</text>
+      <!-- Yuki Head -->
+      <circle cx="0" cy="-45" r="18" fill="#e0def4" />
+      <path d="M-18 -45 C-18 -60 18 -60 18 -45 Z" fill="#4c3d69" />
+      <rect x="-12" y="-48" width="8" height="6" rx="1" fill="none" stroke="#0d1117" stroke-width="1.5" />
+      <rect x="4" y="-48" width="8" height="6" rx="1" fill="none" stroke="#0d1117" stroke-width="1.5" />
+      <line x1="-4" y1="-45" x2="4" y2="-45" stroke="#0d1117" />
+      <rect x="-4" y="-38" width="8" height="4" fill="#f2cc60" />
+      <!-- Speech -->
+      <rect x="15" y="-70" width="155" height="34" rx="6" fill="#0d1117" stroke="#58a6ff" />
+      <text x="92" y="-52" font-size="9" font-weight="bold" fill="#79c0ff" text-anchor="middle">「後ろに並んで！1プロセス1枚！」</text>
+      <text x="92" y="-40" font-size="8.5" fill="#8b949e" text-anchor="middle">「直書きする奴はつまみ出します！」</text>
+    </g>
+
+    <!-- Velvet Stanchion Rope -->
+    <line x1="120" y1="215" x2="435" y2="215" stroke="#f2cc60" stroke-width="4" stroke-dasharray="10 5" />
+
+    <!-- 1. Antigravity at front of line (Sweating, checking watch) -->
+    <g transform="translate(160, 260)">
+      <!-- Ticket -->
+      <rect x="-35" y="-60" width="28" height="36" rx="3" fill="#ffffff" stroke="#0d1117" />
+      <text x="-21" y="-44" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="7" fill="#f85149" text-anchor="middle">NO.</text>
+      <text x="-21" y="-30" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="900" fill="#f85149" text-anchor="middle">002</text>
+
+      <circle cx="0" cy="-20" r="18" fill="#58a6ff" />
+      <rect x="-14" y="-2" width="28" height="28" rx="6" fill="#1f6feb" />
+      <rect x="-14" y="-24" width="28" height="9" rx="3" fill="#0d1117" stroke="#ff7b72" stroke-width="1.2" />
+      <text x="0" y="-17" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="6" fill="#ff7b72" text-anchor="middle">WAIT</text>
+      <!-- Sweating -->
+      <path d="M12 -35 Q18 -42 22 -35 Q20 -28 12 -35" fill="#79c0ff" />
+      <circle cx="-16" cy="10" r="4" fill="#58a6ff" />
+      <circle cx="16" cy="10" r="4" fill="#58a6ff" />
+      <circle cx="16" cy="10" r="6" fill="#ffffff" stroke="#0d1117" /> <!-- Watch -->
+
+      <!-- Dialogue -->
+      <rect x="-65" y="32" width="130" height="42" rx="6" fill="#0d1117" stroke="#79c0ff" />
+      <text x="0" y="48" font-size="9" font-weight="bold" fill="#79c0ff" text-anchor="middle">「頼むから早くしてくれ！」</text>
+      <text x="0" y="64" font-size="8.5" fill="#f0f6fc" text-anchor="middle">「設定を1行書きたいだけなんだ！」</text>
+    </g>
+
+    <!-- 2. Coder Agent in Tent with Coffee -->
+    <g transform="translate(295, 260)">
+      <!-- Camping Tent -->
+      <polygon points="-40,15 0,-45 40,15" fill="#238636" stroke="#2ea043" stroke-width="2" />
+      <polygon points="-15,15 0,-15 15,15" fill="#0d1117" />
+      <circle cx="0" cy="-5" r="14" fill="#f0883e" />
+      <rect x="8" y="-2" width="10" height="12" rx="2" fill="#ffffff" />
+      <!-- Coffee Steam -->
+      <path d="M12 -8 Q10 -15 14 -20" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.6" />
+      <text x="0" y="-3" font-size="10">^.^</text>
+
+      <!-- Ticket -->
+      <rect x="-30" y="-55" width="24" height="28" rx="3" fill="#ffffff" stroke="#0d1117" />
+      <text x="-18" y="-36" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="10" font-weight="900" fill="#0d1117" text-anchor="middle">003</text>
+
+      <!-- Dialogue -->
+      <rect x="-55" y="32" width="120" height="42" rx="6" fill="#0d1117" stroke="#7ee787" />
+      <text x="5" y="48" font-size="9" font-weight="bold" fill="#7ee787" text-anchor="middle">「急かしても無駄だよ。」</text>
+      <text x="5" y="64" font-size="8" fill="#8b949e" text-anchor="middle">「コードを飛ばされるよりマシ」</text>
+    </g>
+
+    <!-- 3. Analyst Agent Meditating (Zen mode) -->
+    <g transform="translate(400, 260)">
+      <circle cx="0" cy="-20" r="16" fill="#d2a8ff" />
+      <rect x="-12" y="-4" width="24" height="24" rx="5" fill="#8957e5" />
+      <line x1="-8" y1="-22" x2="-2" y2="-22" stroke="#0d1117" stroke-width="2" />
+      <line x1="2" y1="-22" x2="8" y2="-22" stroke="#0d1117" stroke-width="2" />
+      <rect x="-10" y="-52" width="20" height="24" rx="2" fill="#ffffff" stroke="#0d1117" />
+      <text x="0" y="-36" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8" font-weight="900" fill="#0d1117" text-anchor="middle">004</text>
+
+      <circle cx="0" cy="-65" r="10" fill="#8957e533" stroke="#d2a8ff" />
+      <text x="0" y="-61" font-size="9" fill="#d2a8ff" text-anchor="middle">禅</text>
+
+      <!-- Dialogue -->
+      <rect x="-42" y="32" width="90" height="42" rx="6" fill="#0d1117" stroke="#d2a8ff" />
+      <text x="3" y="48" font-size="8.5" font-weight="bold" fill="#d2a8ff" text-anchor="middle">「待機こそ平和」</text>
+      <text x="3" y="64" font-size="8" fill="#8b949e" text-anchor="middle">「心頭滅却…」</text>
+    </g>
+
+    <!-- Queue bottom notice -->
+    <rect x="20" y="420" width="420" height="34" rx="6" fill="#d2992222" stroke="#d29922" />
+    <text x="230" y="441" font-size="11" fill="#ffa657" font-weight="bold" text-anchor="middle">プロセス間排他：数ミリ秒の待機で100%の書き込み安全性を確保！</text>
+  </g>
+
+  <!-- Bottom Takeaway Banner -->
+  <g transform="translate(30, 568)">
+    <rect x="0" y="0" width="860" height="50" rx="10" fill="#21262d" stroke="#f2cc60" stroke-width="1.5" />
+    <circle cx="28" cy="25" r="14" fill="#d29922" />
+    <text x="28" y="31" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">🔒</text>
+    <text x="55" y="21" font-size="12" font-weight="bold" fill="#f0f6fc">エンジニアの鉄則：ロック待ちを惜しんで1行のコードを失うな！</text>
+    <text x="55" y="39" font-size="10.5" fill="#8b949e">agentctl.py file は OS ネイティブの flock とアトミック置換を採用。複数 Agent が同時稼働しても安全に整列し、履歴も完全に監査可能です。</text>
+  </g>
+</svg>

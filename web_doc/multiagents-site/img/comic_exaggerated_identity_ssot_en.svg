@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 640" width="100%" height="100%" style="font-family:'WenQuanYi Micro Hei', 'Noto Sans SC', sans-serif;">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e14" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="panelGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#21262d" />
+      <stop offset="100%" stop-color="#161b22" />
+    </linearGradient>
+    <linearGradient id="safeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f6feb" />
+      <stop offset="100%" stop-color="#0d419d" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <rect width="920" height="640" fill="url(#bg3)" />
+  <rect x="15" y="15" width="890" height="610" rx="16" fill="none" stroke="#30363d" stroke-width="2" />
+
+  <!-- Main Title Banner -->
+  <g transform="translate(30, 28)">
+    <rect x="0" y="0" width="170" height="32" rx="6" fill="#8957e5" />
+    <text x="85" y="21" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle">MECHANISM ANALYSIS</text>
+    <text x="185" y="24" font-size="19" font-weight="900" fill="#f0f6fc">Mechanism 3: Identity Binding &amp; Sectioned Memory — Zero Clashes!</text>
+  </g>
+
+  <!-- ================= LEFT: IDENTITY CLASH VS ROSTER ================= -->
+  <g transform="translate(30, 80)" filter="url(#shadow)">
+    <rect x="0" y="0" width="415" height="470" rx="14" fill="url(#panelGrad3)" stroke="#8957e5" stroke-width="2" />
+    <rect x="0" y="0" width="415" height="38" rx="14" fill="#8957e522" />
+    <circle cx="22" cy="19" r="6" fill="#d2a8ff" />
+    <text x="35" y="24" font-size="13" font-weight="900" fill="#d2a8ff">Identity Dispute · No Guessing Allowed (Exit Code 3)</text>
+
+    <!-- BAD CASE: Brawl over identity -->
+    <g transform="translate(205, 120)">
+      <!-- Fight Cloud / Action Sparks -->
+      <path d="M-80 -35 Q-95 -5 0 -45 Q90 -10 75 -40 Q95 20 50 35 Q10 50 -10 40 Q-70 50 -65 20 Z" fill="#f8514922" stroke="#ff7b72" stroke-width="2" stroke-dasharray="6 3" />
+      <text x="-70" y="-30" font-size="16" fill="#f2cc60">POW!</text>
+      <text x="50" y="35" font-size="16" fill="#f2cc60">BAM!</text>
+
+      <!-- Two Agents Tearing the Same Name Tag -->
+      <g transform="translate(-40, -5)">
+        <circle cx="0" cy="-22" r="18" fill="#f0883e" />
+        <text x="-5" y="-18" font-size="12" font-weight="bold">&gt;&lt;</text>
+        <rect x="-12" y="-2" width="24" height="24" rx="5" fill="#d9572b" />
+        <text x="-50" y="-45" font-size="10" font-weight="bold" fill="#f85149">"I'm Haruhi!"</text>
+      </g>
+      <g transform="translate(40, -5)">
+        <circle cx="0" cy="-22" r="18" fill="#58a6ff" />
+        <text x="-5" y="-18" font-size="12" font-weight="bold">&gt;&lt;</text>
+        <rect x="-12" y="-2" width="24" height="24" rx="5" fill="#1f6feb" />
+        <text x="15" y="-45" font-size="10" font-weight="bold" fill="#f85149">"No, I am!"</text>
+      </g>
+
+      <!-- Torn Name Badge in middle -->
+      <rect x="-25" y="-12" width="50" height="22" rx="4" fill="#ffffff" stroke="#f85149" stroke-width="1.5" />
+      <text x="0" y="3" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8" font-weight="bold" fill="#f85149" text-anchor="middle">00_haruhi</text>
+      <!-- Tear line -->
+      <line x1="0" y1="-12" x2="0" y2="10" stroke="#f85149" stroke-width="2" stroke-dasharray="3 2" />
+    </g>
+
+    <!-- Giant Stamp Slamming Down: EXIT CODE 3 -->
+    <g transform="translate(205, 235)">
+      <!-- Giant Red Stamp Box -->
+      <rect x="-150" y="-24" width="300" height="52" rx="8" fill="#f8514922" stroke="#f85149" stroke-width="2.5" />
+      <text x="0" y="0" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="900" fill="#ff7b72" text-anchor="middle">EXIT CODE 3: Identity Ambiguous!</text>
+      <text x="0" y="18" font-size="10.5" font-weight="bold" fill="#ffffff" text-anchor="middle">Never guesses: passes roster to human for selection!</text>
+    </g>
+
+    <!-- GOOD CASE: Proper Resolution via agentctl me -->
+    <g transform="translate(205, 345)">
+      <rect x="-180" y="-45" width="360" height="95" rx="8" fill="#0d1117" stroke="#238636" stroke-width="1.5" />
+      <circle cx="-135" cy="0" r="22" fill="#58a6ff" />
+      <!-- Visor -->
+      <rect x="-150" y="-6" width="30" height="12" rx="4" fill="#0d1117" stroke="#7ee787" stroke-width="1.2" />
+      <text x="-135" y="2" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="7" fill="#7ee787" font-weight="bold" text-anchor="middle">AGY</text>
+
+      <!-- Big Green Verified Badge -->
+      <g transform="translate(-85, -28)">
+        <rect x="0" y="0" width="245" height="58" rx="6" fill="#23863622" stroke="#238636" />
+        <text x="10" y="20" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="10.5" font-weight="bold" fill="#7ee787">✓ agentctl me --name 00_haruhi</text>
+        <text x="10" y="38" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8.5" fill="#8b949e">Client: antigravity | Session: d33457... Bound</text>
+        <text x="10" y="50" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8.5" fill="#79c0ff">Verified roster claim · Zero role hijacking</text>
+      </g>
+    </g>
+
+    <!-- Bottom Badge -->
+    <rect x="20" y="420" width="375" height="34" rx="6" fill="#8957e522" stroke="#8957e5" />
+    <text x="205" y="441" font-size="11" fill="#d2a8ff" font-weight="bold" text-anchor="middle">Identity Protocol: Auto-binds session; exits 3 rather than guessing!</text>
+  </g>
+
+  <!-- ================= RIGHT: MEMORY COLLISION VS SSOT ================= -->
+  <g transform="translate(470, 80)" filter="url(#shadow)">
+    <rect x="0" y="0" width="420" height="470" rx="14" fill="url(#panelGrad3)" stroke="#388bfd" stroke-width="2" />
+    <rect x="0" y="0" width="420" height="38" rx="14" fill="#1f6feb22" />
+    <circle cx="22" cy="19" r="6" fill="#79c0ff" />
+    <text x="35" y="24" font-size="13" font-weight="900" fill="#79c0ff">Memory SSOT · Section Appends vs File Clobbering</text>
+
+    <!-- BAD CASE: Paper Tearing Over Single MEMORY.md -->
+    <g transform="translate(210, 115)">
+      <rect x="-185" y="-30" width="370" height="62" rx="8" fill="#0d1117" stroke="#f85149" stroke-width="1.5" />
+      <text x="-170" y="-12" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="10" font-weight="bold" fill="#f85149">Legacy Mode: Everyone manually edits same MEMORY.md</text>
+      <!-- Two hands with pen & eraser -->
+      <text x="-170" y="10" font-size="10" fill="#ff7b72">Agent A finishes reverse notes -> Agent B clobbers everything!</text>
+      <text x="-170" y="24" font-size="9" fill="#8b949e">Result: Notes overwritten, lost insights, completely wasted effort!</text>
+    </g>
+
+    <!-- GOOD CASE: SSOT Vault with Drawers -->
+    <g transform="translate(210, 280)">
+      <!-- Giant Vault Safe (JSON Single Source of Truth) -->
+      <rect x="-185" y="-75" width="200" height="175" rx="10" fill="#0d1117" stroke="#388bfd" stroke-width="2" />
+      <rect x="-185" y="-75" width="200" height="24" rx="10" fill="#1f6feb33" />
+      <text x="-85" y="-59" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9.5" font-weight="bold" fill="#79c0ff" text-anchor="middle">state/memory/ (JSON SSOT)</text>
+
+      <!-- Safe Drawer 1: Antigravity -->
+      <g transform="translate(-175, -40)">
+        <rect x="0" y="0" width="180" height="36" rx="4" fill="#21262d" stroke="#30363d" />
+        <rect x="0" y="0" width="6" height="36" fill="#79c0ff" />
+        <text x="14" y="16" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" font-weight="bold" fill="#79c0ff">## Antigravity (Dedicated)</text>
+        <text x="14" y="28" font-size="7.5" fill="#8b949e">Independent append, never touches others</text>
+      </g>
+
+      <!-- Safe Drawer 2: 02_static-re -->
+      <g transform="translate(-175, 4)">
+        <rect x="0" y="0" width="180" height="36" rx="4" fill="#21262d" stroke="#30363d" />
+        <rect x="0" y="0" width="6" height="36" fill="#ffa657" />
+        <text x="14" y="16" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" font-weight="bold" fill="#ffa657">## 02_static-re (Dedicated)</text>
+        <text x="14" y="28" font-size="7.5" fill="#8b949e">Static RE analysis notes, safe &amp; intact</text>
+      </g>
+
+      <!-- Safe Drawer 3: 01_emu-gui -->
+      <g transform="translate(-175, 48)">
+        <rect x="0" y="0" width="180" height="36" rx="4" fill="#21262d" stroke="#30363d" />
+        <rect x="0" y="0" width="6" height="36" fill="#7ee787" />
+        <text x="14" y="16" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="9" font-weight="bold" fill="#7ee787">## 01_emu-gui (Dedicated)</text>
+        <text x="14" y="28" font-size="7.5" fill="#8b949e">Emulator logs &amp; coords, zero collision</text>
+      </g>
+
+      <!-- Projection Arrow to Read-only Markdown -->
+      <path d="M 25 15 L 60 15" stroke="#7ee787" stroke-width="3" stroke-dasharray="4 2" />
+      <polygon points="60,10 70,15 60,20" fill="#7ee787" />
+      <text x="45" y="5" font-size="8" font-weight="bold" fill="#7ee787" text-anchor="middle">Auto Export</text>
+
+      <!-- Markdown Read-only Hologram Screen -->
+      <g transform="translate(75, -60)">
+        <rect x="0" y="0" width="115" height="165" rx="6" fill="#1f6feb11" stroke="#7ee787" stroke-width="1.5" />
+        <rect x="0" y="0" width="115" height="22" rx="6" fill="#7ee78722" />
+        <text x="57" y="14" font-family="'WenQuanYi Micro Hei Mono', monospace" font-size="8" font-weight="bold" fill="#7ee787" text-anchor="middle">MEMORY.md</text>
+        <text x="57" y="32" font-size="7.5" fill="#8b949e" text-anchor="middle">(Human Read View)</text>
+
+        <line x1="10" y1="45" x2="60" y2="45" stroke="#79c0ff" stroke-width="2.5" />
+        <line x1="10" y1="55" x2="90" y2="55" stroke="#8b949e" stroke-width="1.2" />
+
+        <line x1="10" y1="75" x2="65" y2="75" stroke="#ffa657" stroke-width="2.5" />
+        <line x1="10" y1="85" x2="85" y2="85" stroke="#8b949e" stroke-width="1.2" />
+
+        <line x1="10" y1="105" x2="70" y2="105" stroke="#7ee787" stroke-width="2.5" />
+        <line x1="10" y1="115" x2="95" y2="115" stroke="#8b949e" stroke-width="1.2" />
+
+        <circle cx="57" cy="148" r="7" fill="#238636" />
+        <text x="57" y="139" font-size="9" fill="#ffffff" text-anchor="middle">✓</text>
+      </g>
+    </g>
+
+    <!-- Bottom Badge -->
+    <rect x="20" y="420" width="380" height="34" rx="6" fill="#23863622" stroke="#238636" />
+    <text x="210" y="441" font-size="10.5" fill="#7ee787" font-weight="bold" text-anchor="middle">Machines read/write JSON by section; humans view exported Markdown!</text>
+  </g>
+
+  <!-- Bottom Takeaway Banner -->
+  <g transform="translate(30, 568)">
+    <rect x="0" y="0" width="860" height="50" rx="10" fill="#21262d" stroke="#8957e5" stroke-width="1.5" />
+    <circle cx="28" cy="25" r="14" fill="#8957e5" />
+    <text x="28" y="31" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">★</text>
+    <text x="55" y="21" font-size="12" font-weight="bold" fill="#f0f6fc">Pillars: Verified identity + Physically isolated memory sections</text>
+    <text x="55" y="39" font-size="10.5" fill="#8b949e">agentctl.py me eliminates identity theft; memory SSOT partitions sections by ## headers so 10 parallel agents never clobber each other.</text>
+  </g>
+</svg>
