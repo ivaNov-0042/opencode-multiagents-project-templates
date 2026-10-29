@@ -58,6 +58,18 @@ The framework automatically recognizes sessions via environment identifiers, pro
 | `TODO.md` | Exported view of team task board (SSOT is `multiagents/state/todo.json`) |
 | `tools/` | Third-party dependency tools and build directories |
 
+## Why `xxxx/<topic>/xxx` Directory Design Empowers Vibe Coding
+
+When engaging in high-velocity, intuition-driven AI programming (**Vibe Coding**), developers and AI agents frequently hit major engineering bottlenecks: context windows clogged by unrelated files, root directories littered with throwaway test scripts, unrepeatable one-off experimental results, and parallel sessions clobbering each other's work.
+
+This framework enforces **`xxxx/<topic>/xxx` (Topic-Based Isolation)** and **`scripts/<topic>/<agent>/` (Dedicated Agent Playgrounds)** specifically to turn Vibe Coding from an ephemeral, messy hackathon into a sustainable, high-velocity engineering workflow:
+
+1. **Strict Context Boundaries (Zero Token Pollution)**: When an agent vibes on a specific domain (e.g. `ai_tts`), it only scans `scripts/ai_tts/`, `data/ai_tts/`, and `memory/ai_tts/`. Unrelated code (e.g. low-level emulator disassembly) never enters the prompt context. This maximizes signal-to-noise ratio, conserves token budgets, and prevents LLM attention degradation and hallucinations.
+2. **Ultra-Low Blast Radius (Safe Playgrounds)**: Vibe coding thrives on bold experiments and throwaway prototypes. In `scripts/<topic>/<agent>/`, each agent has an isolated sandbox to churn out quick probes and test scripts without fearing breaking mainline code or disturbing peers. Validated scripts graduate to `SCRIPTS.md`, while discarded experiments move cleanly to `archive/<topic>/`.
+3. **Reproducible Pipeline Closed Loop**: From `archive/<topic>/` (raw inputs) ➔ `data/<topic>/` (structured datasets) ➔ `scripts/<topic>/` (execution logic) ➔ `output/<topic>/` (reports and visualization plots) ➔ `memory/<topic>/` (distilled insights and diaries), every deliverable maintains a rigorous audit trail. No more "it worked at 2 AM on my machine, but nobody knows which script generated it."
+4. **Multi-Session Parallelism Without Race Conditions**: Developers can run multiple parallel sessions (e.g. Antigravity, OpenCode, Claude Code) working on different topics simultaneously. Isolated directories combined with cross-process file locks ensure uninterrupted parallel vibes with zero collision.
+5. **Human Shifts from "Coder" to "Director"**: Deliverables strictly land in `output/<topic>/{report,img}/`. The human developer is freed from tedious line-by-line code review, instead assessing visual plots and concise markdown digests to provide instant directional steering for the next vibe iteration.
+
 ## Custom Project Adaptation
 
 This template contains no proprietary domain logic. The typical workflow to adapt it to a new project:

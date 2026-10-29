@@ -175,6 +175,7 @@
   <p class="tagline">Antigravity、OpenCode、Claude Code など主要な Agent 環境に対応するマルチセッション協調骨格：セッション ID によるアイデンティティ自動紐付け、チームタスクボード、JSON 単一事実源（SSOT）によるメモリ、CLI 中立なスキル配信、プロセス間ロック付きファイル編集。純 Python 標準ライブラリ、クローン後すぐに利用可能。</p>
   <div class="cta">
     <a class="btn primary" href="#quickstart">クイックスタート</a>
+    <a class="btn" href="#vibe-coding">Vibe Coding 哲学</a>
     <a class="btn" href="https://github.com/ivaNov-0042/opencode-multiagents-project-templates">GitHub リポジトリ</a>
   </div>
 </header>
@@ -289,6 +290,45 @@
     <tr><td>data/ archive/ output/</td><td>整形データ / 原本アーカイブ / 成果物レポート・図（output/&lt;テーマ&gt;/{report,img}）</td></tr>
     <tr><td>memory/</td><td>共有ナレッジ・日誌ビュー（.md はエクスポートビュー。ソースは multiagents/state/memory/）</td></tr>
   </table>
+</section>
+
+<section class="wrap" id="vibe-coding">
+  <h2>Vibe Coding を加速するディレクトリ設計（xxxx/&lt;テーマ&gt;/xxx）</h2>
+  <div class="card" style="margin-bottom: 18px; max-width: 56em;">
+    <p style="color:var(--text); margin-bottom:12px;">
+      <strong style="color:var(--accent);">Vibe Coding を「一度きりの散らかった開発」から「持続可能な超高速生産」へ。</strong>
+      LLM と直感的に対話しながら高速に試行錯誤する <strong>Vibe Coding</strong> は創造性を飛躍的に高めます。しかし物理的な境界がないと、コンテキスト肥大化によるモデルの幻覚や知能低下、ルート直下に溢れる使い捨てコード、再現不能な実験データ、複数セッションによる上書き事故といった壁に直面します。
+    </p>
+    <p style="color:var(--dim); font-size:0.92rem;">
+      フレームワークが提唱する <code>xxxx/&lt;テーマ&gt;/xxx</code>（テーマ別分離）と <code>scripts/&lt;テーマ&gt;/&lt;agent&gt;/</code>（専用実験場）の設計は、Vibe Coding に最高の高 S/N 比な開発環境を提供します：
+    </p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>🎯 コンテキストの物理隔離</h3>
+      <p>特定テーマ（例：<code>ai_tts</code>）に集中する際、対象ディレクトリのみを走査。無関係なコードが混入せず、トークン消費を抑え、注意散漫と幻覚を防止。</p>
+    </div>
+    <div class="card">
+      <h3>🛡️ 極小の爆発半径</h3>
+      <p>各エージェント専用の <code>scripts/&lt;テーマ&gt;/&lt;agent&gt;/</code> で自由に試行錯誤。検証用プローブを乱作してもメインを破壊せず、有用なものは <code>SCRIPTS.md</code> に集約。</p>
+    </div>
+    <div class="card">
+      <h3>🔄 完全な再現性ループ</h3>
+      <p><code>archive</code> (原本) ➔ <code>data</code> (加工) ➔ <code>scripts</code> (処理) ➔ <code>output</code> (図表/報告) ➔ <code>memory</code> (知見/日誌) で、直感的な閃きから生まれた成果物も確実に追跡可能。</p>
+    </div>
+    <div class="card">
+      <h3>⚡ 並行稼働でも衝突ゼロ</h3>
+      <p>Antigravity、OpenCode、Claude Code など複数ウィンドウで同時進行。テーマ分離とプロセス間ファイルロックにより、最高の Vibe を維持したまま並行開発。</p>
+    </div>
+    <div class="card">
+      <h3>🎬 「コーダー」から「総監督」へ</h3>
+      <p>成果物は <code>output/&lt;テーマ&gt;/{report,img}</code> に自動集約。人間は細かいコード行を追う代わりに、図表や要約を見て直感的に次のプロンプト指示を出せます。</p>
+    </div>
+    <div class="card">
+      <h3>📦 資産の蓄積、ゴミの排除</h3>
+      <p>不要な試行は <code>archive/</code> へ退避。何十回もの Vibe セッションを経ても、乱雑なコードの山ではなく、整理された研究資産が残ります。</p>
+    </div>
+  </div>
 </section>
 
 <section class="wrap" id="design">

@@ -175,6 +175,7 @@
   <p class="tagline">A multi-session collaboration framework for Antigravity, OpenCode, Claude Code, and other agent environments: covering automatic identity binding, shared task boards, JSON single source of truth memory, CLI-neutral skill distribution, and lock-protected file editing. Pure Python standard library, clone-and-go.</p>
   <div class="cta">
     <a class="btn primary" href="#quickstart">Quick start</a>
+    <a class="btn" href="#vibe-coding">Vibe Coding Philosophy</a>
     <a class="btn" href="https://github.com/ivaNov-0042/opencode-multiagents-project-templates">GitHub repo</a>
   </div>
 </header>
@@ -289,6 +290,45 @@
     <tr><td>data/ archive/ output/</td><td>Cleaned datasets / archive data / delivery reports &amp; figures (output/&lt;topic&gt;/{report,img})</td></tr>
     <tr><td>memory/</td><td>Shared knowledge and diary views (.md exports; sources in multiagents/state/memory/)</td></tr>
   </table>
+</section>
+
+<section class="wrap" id="vibe-coding">
+  <h2>Why xxxx/&lt;topic&gt;/xxx Directory Design Empowers Vibe Coding</h2>
+  <div class="card" style="margin-bottom: 18px; max-width: 56em;">
+    <p style="color:var(--text); margin-bottom:12px;">
+      <strong style="color:var(--accent);">Transforming Vibe Coding from an ephemeral mess into sustainable high-velocity productivity.</strong>
+      In the LLM era, intuition-driven, high-frequency prompt iterations (<strong>Vibe Coding</strong>) unlock unprecedented velocity. But without rigid physical isolation boundaries, developers quickly hit walls: bloated prompt contexts causing hallucination and reasoning degradation, root folders littered with mystery test scripts, unrepeatable one-off charts, and concurrent windows overwriting each other.
+    </p>
+    <p style="color:var(--dim); font-size:0.92rem;">
+      The <code>xxxx/&lt;topic&gt;/xxx</code> (topic-based isolation) and <code>scripts/&lt;topic&gt;/&lt;agent&gt;/</code> (dedicated agent sandboxes) pattern provides the high signal-to-noise engineering foundation that Vibe Coding demands:
+    </p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>🎯 Zero Token Pollution</h3>
+      <p>When working on a topic (e.g. <code>ai_tts</code>), only load its dedicated folder. Unrelated files never enter the prompt context, eliminating distraction and hallucination.</p>
+    </div>
+    <div class="card">
+      <h3>🛡️ Ultra-Low Blast Radius</h3>
+      <p>Each agent has its own <code>scripts/&lt;topic&gt;/&lt;agent&gt;/</code> sandbox to rapidly prototype without fear of polluting git roots or breaking peers; validated tools index into <code>SCRIPTS.md</code>.</p>
+    </div>
+    <div class="card">
+      <h3>🔄 Reproducible Pipeline Closed Loop</h3>
+      <p><code>archive</code> (raw) ➔ <code>data</code> (clean) ➔ <code>scripts</code> (logic) ➔ <code>output</code> (reports/plots) ➔ <code>memory</code> (diary/notes) ensures every spark of intuition is 100% reproducible.</p>
+    </div>
+    <div class="card">
+      <h3>⚡ Parallel Vibes without Clashes</h3>
+      <p>Spin up multiple windows (Antigravity, OpenCode, Claude Code) working on different topics simultaneously. Topic isolation + flock mutex prevents collisions.</p>
+    </div>
+    <div class="card">
+      <h3>🎬 From Coder to Director</h3>
+      <p>Outputs cleanly aggregate in <code>output/&lt;topic&gt;/{report,img}</code>. Humans review intuitive charts and digests, driving the next iteration by pure vibe and vision.</p>
+    </div>
+    <div class="card">
+      <h3>📦 Real Assets, Zero Slag</h3>
+      <p>Old experiments archive to <code>archive/</code>; useful scripts are documented. After dozens of vibe sessions, you have an organized research asset rather than an unmaintainable swamp.</p>
+    </div>
+  </div>
 </section>
 
 <section class="wrap" id="design">

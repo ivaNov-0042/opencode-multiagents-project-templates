@@ -175,6 +175,7 @@
   <p class="tagline">面向 Antigravity、OpenCode、Claude Code 等主流 Agent 环境的多会话协同骨架：涵盖会话身份自动绑定、团队任务板、JSON 单一事实源记忆、CLI 中立技能分发与跨进程加锁编辑。纯 Python 标准库，克隆即用。</p>
   <div class="cta">
     <a class="btn primary" href="#quickstart">快速开始</a>
+    <a class="btn" href="#vibe-coding">Vibe Coding 哲学</a>
     <a class="btn" href="https://github.com/ivaNov-0042/opencode-multiagents-project-templates">GitHub 仓库</a>
   </div>
 </header>
@@ -289,6 +290,45 @@
     <tr><td>data/ archive/ output/</td><td>清洗数据集 / 原始数据归档 / 交付报告与图表（output/&lt;主题&gt;/{report,img}）</td></tr>
     <tr><td>memory/</td><td>共享知识与日志视图（.md 为只读导出物，事实源在 multiagents/state/memory/）</td></tr>
   </table>
+</section>
+
+<section class="wrap" id="vibe-coding">
+  <h2>面向 Vibe Coding 的工程目录设计</h2>
+  <div class="card" style="margin-bottom: 18px; max-width: 56em;">
+    <p style="color:var(--text); margin-bottom:12px;">
+      <strong style="color:var(--accent);">让 Vibe Coding 从「一次性散乱狂欢」走向「可持续高能产出」。</strong>
+      在大模型时代，借助直觉驱动、高频 Prompt 迭代的 <strong>Vibe Coding</strong> 能极大激发创造力。然而缺乏严谨物理边界时，往往陷入死穴：无关代码撑爆上下文导致模型幻觉降智、临时实验探针堆满根目录不敢删、生成的图表与数据跑完一次即失联、多窗口并发修改更是直接互相覆盖。
+    </p>
+    <p style="color:var(--dim); font-size:0.92rem;">
+      框架推行的 <code>xxxx/&lt;主题&gt;/xxx</code>（按主题隔离）与 <code>scripts/&lt;主题&gt;/&lt;agent&gt;/</code>（专属试验场）体系，正是为 Vibe Coding 构筑的高信噪比工程底座：
+    </p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>🎯 上下文精准投喂</h3>
+      <p>聚焦特定主题（如 <code>ai_tts</code>）时，仅加载对应目录。无关模块绝不进入 Prompt，信噪比最大化，彻底杜绝注意力漂移与幻觉。</p>
+    </div>
+    <div class="card">
+      <h3>🛡️ 极低爆炸半径试验场</h3>
+      <p>每个 Agent 拥有独立的 <code>scripts/&lt;主题&gt;/&lt;agent&gt;/</code> 自由试错，写 10 个测试探针也绝不搞乱根目录或干扰他人；成熟后沉淀至 <code>SCRIPTS.md</code>。</p>
+    </div>
+    <div class="card">
+      <h3>🔄 全链路可复现闭环</h3>
+      <p><code>archive</code> (原始) ➔ <code>data</code> (清洗) ➔ <code>scripts</code> (分析) ➔ <code>output</code> (图表/报告) ➔ <code>memory</code> (日记/结论)，每一次灵感产出都具备清晰的数据与代码追溯链。</p>
+    </div>
+    <div class="card">
+      <h3>⚡ 多 Agent 并发狂飙</h3>
+      <p>开发者可同时开启多个窗口（Antigravity、OpenCode、Claude Code），各 Agent 在专属主题各司其职，配合跨进程文件锁，全速 Vibe 绝不撞车。</p>
+    </div>
+    <div class="card">
+      <h3>🎬 从码农升级为"总导演"</h3>
+      <p>成果自动汇聚于 <code>output/&lt;主题&gt;/{report,img}</code>。人类免于逐行审阅琐碎代码，通过直观的图表与摘要给出方向指令，以纯粹直觉驱动迭代。</p>
+    </div>
+    <div class="card">
+      <h3>📦 资产沉淀而非代码垃圾</h3>
+      <p>废弃探索先归档至 <code>archive/</code>，有效资产记录于索引。多轮 Vibe 之后沉淀下的是结构严整的研究工作区，而非难以维护的屎山代码。</p>
+    </div>
+  </div>
 </section>
 
 <section class="wrap" id="design">
