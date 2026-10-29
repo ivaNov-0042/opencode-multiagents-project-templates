@@ -58,17 +58,17 @@ AI Agent 操作流程：
 | `TODO.md` | 团队任务板导出视图（事实源为 `multiagents/state/todo.json`） |
 | `tools/` | 第三方依赖工具源码与编译目录 |
 
-## 面向 Vibe Coding 的主题目录哲学（`xxxx/<主题>/xxx`）
+## 面向 Vibe Coding 的主题目录哲学（`<asset>/<theme>/<product>`）
 
 在借助大模型进行直觉驱动与高频迭代（**Vibe Coding**）时，开发者最常遭遇的工程瓶颈是：上下文被无关代码撑爆、临时探索脚本堆满根目录、生成的数据与图表散落无法复现、以及多窗口并发时代码相互踩踏。
 
-本框架推行 **`xxxx/<主题>/xxx`（主题归档隔离）** 与 **`scripts/<主题>/<agent>/`（专属试验场）** 设计，旨在让 Vibe Coding 从"一次性狂欢"转变为"可持续的高能产出"：
+本框架推行 **`<asset>/<theme>/<product>`（资产 / 主题 / 专属工件三级隔离）** 与 **`scripts/<theme>/<agent>/`（专属试验场）** 设计，旨在让 Vibe Coding 从"一次性狂欢"转变为"可持续的高能产出"：
 
 1. **上下文精准投喂（Context Boundary）**：当 Agent 聚焦于某个特定任务（如 `ai_tts`）时，只需局部扫描 `scripts/ai_tts/`、`data/ai_tts/` 与 `memory/ai_tts/`。无关模块（如模拟器操作、底层驱动逆向）不进入上下文，信噪比最大化，彻底杜绝模型因信息过载而产生的注意力漂移与幻觉。
-2. **极低爆炸半径（Low Blast Radius Playground）**：Vibe Coding 鼓励大胆尝试与快速生成探索脚本。每个 Agent 拥有独立的脚本子目录 `scripts/<主题>/<agent>/`，无论写多少验证性 demo 或临时探针，都绝不会破坏主干流程或干扰并行的其他 Agent；成熟模块沉淀进 `SCRIPTS.md`，废弃版本归档至 `archive/`。
-3. **全链路可复现闭环（Reproducible Pipeline）**：从 `archive/<主题>/`（原始资产）➔ `data/<主题>/`（清洗数据）➔ `scripts/<主题>/`（计算逻辑）➔ `output/<主题>/`（报告与图表）➔ `memory/<主题>/`（结论与日记），每一次 Vibe 探索产出的图表与结论都能追溯来源脚本与数据版本，告别"只跑了一次就再也复现不了"的玄学窘境。
+2. **极低爆炸半径（Low Blast Radius Playground）**：Vibe Coding 鼓励大胆尝试与快速生成探索脚本。每个 Agent 拥有独立的脚本子目录 `scripts/<theme>/<agent>/`，无论写多少验证性 demo 或临时探针，都绝不会破坏主干流程或干扰并行的其他 Agent；成熟模块沉淀进 `SCRIPTS.md`，废弃版本归档至 `archive/`。
+3. **全链路可复现闭环（Reproducible Pipeline）**：从 `archive/<theme>/`（原始资产）➔ `data/<theme>/`（清洗数据）➔ `scripts/<theme>/`（计算逻辑）➔ `output/<theme>/`（报告与图表）➔ `memory/<theme>/`（结论与日记），每一次 Vibe 探索产出的图表与结论都能追溯来源脚本与数据版本，告别"只跑了一次就再也复现不了"的玄学窘境。
 4. **多会话并发不撞车（Parallel Vibes without Clashes）**：支持开发者同时开启多个窗口（如 Antigravity、Claude Code、OpenCode）让不同的 Agent 分头探索。各自在专属主题与小节内运作，配合项目跨进程文件锁，保障所有人全速 Vibe、永不冲突。
-5. **人类升级为"总导演"（From Coder to Director）**：产出物统一落盘在 `output/<主题>/{report,img}/`，人类开发者从繁重的低层代码细节中抽身，通过审阅直观的可视化图表与精炼报告进行决策与调优，以纯粹的直觉驱动下一轮迭代。
+5. **人类升级为"总导演"（From Coder to Director）**：产出物统一落盘在 `output/<theme>/{report,img}/`，人类开发者从繁重的低层代码细节中抽身，通过审阅直观的可视化图表与精炼报告进行决策与调优，以纯粹的直觉驱动下一轮迭代。
 
 ## 自定义工程适配
 
